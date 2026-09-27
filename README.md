@@ -1,3 +1,12 @@
-# X3D Agent Suite
+# ISO-X3D-Perspective-Architect
 
-Repository containing documentation and the ISO-X3D-Perspective-Architect skill.
+Merged repository release containing production code, ontology, SHACL shapes, schemas, examples, tests, and documentation.
+
+## Install
+pip install -e .
+
+## Test
+pytest
+
+## Run Example
+python examples/human-perspective.py

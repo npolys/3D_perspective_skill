@@ -1,9 +1,0 @@
-{
-  "observer": {
-    "type": "HumanPerspective"
-  },
-  "world_frame": {
-    "up_axis": "+Y",
-    "gravity_axis": "-Y"
-  }
-}
