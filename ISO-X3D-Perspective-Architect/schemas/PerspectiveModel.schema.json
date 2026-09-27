@@ -1,0 +1,11 @@
+{
+  "title": "PerspectiveModel",
+  "type": "object",
+  "required": [
+    "world_frame",
+    "observer",
+    "scale_model",
+    "navigation_model",
+    "viewpoints"
+  ]
+}

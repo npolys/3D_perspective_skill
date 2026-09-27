@@ -1,0 +1,3 @@
+@prefix pm: <https://x3d-agent-suite.org/perspective#> .
+pm:Perspective a <http://www.w3.org/2002/07/owl#Class> .
+pm:HumanPerspective a <http://www.w3.org/2002/07/owl#Class> .

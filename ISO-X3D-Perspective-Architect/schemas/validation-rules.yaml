@@ -1,0 +1,3 @@
+validation:
+  gravity_present: true
+  viewpoints_minimum: 1
