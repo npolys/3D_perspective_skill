@@ -1,0 +1,8 @@
+@prefix :     <https://w3id.org/spatial-cognition#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:TraversableSpace a owl:Class ;
+    rdfs:subClassOf :Concept ;
+    rdfs:label "Traversable space"@en ;
+    rdfs:comment "Where the agent's body can stand and move: supported along -up, clear of collidable geometry by the collision radius, and reachable by steps no taller than the step height."@en .

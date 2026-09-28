@@ -1,0 +1,8 @@
+@prefix :     <https://w3id.org/spatial-cognition#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:GravityModel a owl:Class ;
+    rdfs:subClassOf :Concept ;
+    rdfs:label "Gravity model"@en ;
+    rdfs:comment "Which way gravity pulls, and for physics how hard. For navigation it pulls along -up of the bound Viewpoint's frame under WALK, with no magnitude given; physics nodes give an explicit vector."@en .

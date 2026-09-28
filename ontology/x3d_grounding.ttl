@@ -1,0 +1,216 @@
+@prefix :     <https://w3id.org/spatial-cognition#> .
+@prefix x3d:  <https://www.web3d.org/specifications/X3dOntology4.1#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+
+<https://w3id.org/spatial-cognition/x3d-grounding> a owl:Ontology ;
+    rdfs:label "X3D grounding for the spatial cognition ontology"@en ;
+    rdfs:comment "Links each agent concept to the X3D Ontology 4.1 nodes and fields it is computed from. Groundings are annotations, not logical axioms: the agent's concepts are not X3D node types, and annotations keep this ontology independent of the X3D Ontology's own modelling. tests/test_x3d_grounding.py checks every link against x3d_mcp's describe_node definitions (contracts/x3d_defaults.json); X3D schema and ontology conformance is x3d_mcp's job."@en ;
+    rdfs:seeAlso <https://www.web3d.org/specifications/X3dOntology4.1> .
+
+#################################################################
+# Grounding vocabulary
+
+:groundedIn a owl:AnnotationProperty ;
+    rdfs:label "grounded in"@en ;
+    rdfs:comment "Links a concept to an X3D node, and usually one of its fields, that the concept is computed from."@en .
+
+:x3dNode a owl:AnnotationProperty ;
+    rdfs:label "X3D node"@en ;
+    rdfs:comment "An X3D Ontology node class or statement class."@en .
+
+:x3dField a owl:AnnotationProperty ;
+    rdfs:label "X3D field"@en ;
+    rdfs:comment "An X3D Ontology field property whose domain includes the grounding's node."@en .
+
+:fieldIndex a owl:AnnotationProperty ;
+    rdfs:label "field index"@en ;
+    rdfs:comment "Zero-based position within a multi-valued field, for example 1 for the eye height in avatarSize."@en .
+
+:x3dValue a owl:AnnotationProperty ;
+    rdfs:label "X3D value"@en ;
+    rdfs:comment "A specific enumeration value of the field."@en .
+
+:x3dDefault a owl:AnnotationProperty ;
+    rdfs:label "X3D default"@en ;
+    rdfs:comment "The field's default as X3D writes it (the element at fieldIndex when given)."@en .
+
+:quantityUnit a owl:AnnotationProperty ;
+    rdfs:label "quantity unit"@en ;
+    rdfs:comment "The QUDT unit of the value once converted to base units."@en .
+
+:scaledBy a owl:AnnotationProperty ;
+    rdfs:label "scaled by"@en ;
+    rdfs:comment "A transformation the value is multiplied by before use."@en .
+
+:derivedFrom a owl:AnnotationProperty ;
+    rdfs:label "derived from"@en ;
+    rdfs:comment "Another concept this one is computed from."@en .
+
+:rule a owl:AnnotationProperty ;
+    rdfs:label "rule"@en ;
+    rdfs:comment "How the value is computed, citing the ISO/IEC 19775-1 clause."@en .
+
+:BoundViewpointFrame a owl:NamedIndividual ;
+    rdfs:label "bound Viewpoint frame"@en ;
+    rdfs:comment "The accumulated transform of the currently bound X3DViewpointNode's ancestors. 23.4.4: speed, avatarSize and visibilityLimit are all scaled by it."@en .
+
+#################################################################
+# Body and perspective
+
+:Agent :groundedIn
+    [ :x3dNode x3d:NavigationInfo ; :x3dField x3d:avatarSize ;
+      :x3dDefault "0.25 1.6 0.75" ; :quantityUnit unit:M ; :scaledBy :BoundViewpointFrame ;
+      :rule "Collision radius, eye height above terrain, tallest step (23.4.4)." ] ,
+    [ :x3dNode x3d:NavigationInfo ; :x3dField x3d:speed ;
+      :x3dDefault "1" ; :quantityUnit unit:M-PER-SEC ; :scaledBy :BoundViewpointFrame ] ,
+    [ :x3dNode x3d:HAnimHumanoid ; :x3dField x3d:hasViewpoints ;
+      :rule "Optional embodied avatar: HAnimSite camera mounts give a first-person view; joint positions give stature and reach." ] .
+
+:GroundedPerspective
+    :derivedFrom :Agent , :CoordinateFrame , :PerspectiveProjection ;
+    :groundedIn
+    [ :x3dNode x3d:Viewpoint ; :x3dField x3d:position ;
+      :x3dDefault "0 0 10" ; :quantityUnit unit:M ] ,
+    [ :x3dNode x3d:X3DViewpointNode ; :x3dField x3d:orientation ;
+      :x3dDefault "0 0 1 0" ;
+      :rule "Camera axes: +X right, +Y up, -Z forward after this rotation. Does not change the up vector (23.3.1)." ] ,
+    [ :x3dNode x3d:X3DViewpointNode ; :x3dField x3d:navigationInfo ;
+      :rule "Binding this viewpoint also binds the NavigationInfo it names (X3D 4)." ] ,
+    [ :x3dNode x3d:unit ; :x3dField x3d:conversionFactor ;
+      :rule "Scene length units to meters." ] .
+
+:BindingStack :groundedIn
+    [ :x3dNode x3d:X3DBindableNode ; :x3dField x3d:set_bind ] ,
+    [ :x3dNode x3d:X3DBindableNode ; :x3dField x3d:isBound ] ,
+    [ :x3dNode x3d:X3DBindableNode ; :x3dField x3d:bindTime ;
+      :rule "One node of each bindable type is in effect at a time: the top of its stack." ] .
+
+#################################################################
+# Up, frames and units
+
+:CoordinateFrame :groundedIn
+    [ :x3dNode x3d:Transform ;
+      :rule "Right-handed, +Y up, default view along -Z. Frames nest along the x3d:hasParent chain; HAnimHumanoid, HAnimJoint, CADPart, GeoTransform, GeoLocation and EspduTransform carry the same transform fields." ] ,
+    [ :x3dNode x3d:Viewpoint ;
+      :rule "Up is +Y of the coordinate system of the currently bound X3DViewpointNode; down is its -Y (23.3.1)." ] ,
+    [ :x3dNode x3d:GeoOrigin ; :x3dField x3d:rotateYUp ; :x3dDefault "false" ;
+      :rule "false: local up is relative to the planet surface; true: local up is aligned with +Y so WALK and FLY work." ] .
+
+:Transform :groundedIn
+    [ :x3dNode x3d:Transform ; :x3dField x3d:translation ; :x3dDefault "0 0 0" ; :quantityUnit unit:M ] ,
+    [ :x3dNode x3d:Transform ; :x3dField x3d:rotation ; :x3dDefault "0 0 1 0" ] ,
+    [ :x3dNode x3d:Transform ; :x3dField x3d:scale ; :x3dDefault "1 1 1" ] ,
+    [ :x3dNode x3d:Transform ; :x3dField x3d:scaleOrientation ; :x3dDefault "0 0 1 0" ] ,
+    [ :x3dNode x3d:Transform ; :x3dField x3d:center ; :x3dDefault "0 0 0" ; :quantityUnit unit:M ;
+      :rule "P' = T * C * R * SR * S * -SR * -C * P" ] .
+
+:Meter skos:exactMatch unit:M ;
+    :groundedIn
+    [ :x3dNode x3d:unit ; :x3dField x3d:category ; :x3dValue x3d:unitCategory__length ] ,
+    [ :x3dNode x3d:unit ; :x3dField x3d:conversionFactor ;
+      :rule "Meters per scene length unit. With no unit statement, scene lengths are meters." ] .
+
+:GravityModel
+    :derivedFrom :CoordinateFrame ;
+    :groundedIn
+    [ :x3dNode x3d:NavigationInfo ; :x3dField x3d:type ; :x3dValue x3d:navigationType__WALK ;
+      :rule "WALK: gravity pulls along -up, where down is -Y of the bound X3DViewpointNode's coordinate system (23.3.1, 23.4.4). No magnitude is given." ] ,
+    [ :x3dNode x3d:RigidBodyCollection ; :x3dField x3d:gravity ;
+      :x3dDefault "0 -9.8 0" ; :quantityUnit unit:M-PER-SEC2 ;
+      :rule "Rigid-body physics gravity; its direction should equal -up." ] ,
+    [ :x3dNode x3d:ForcePhysicsModel ; :x3dField x3d:force ; :x3dDefault "0 -9.8 0" ;
+      :rule "Constant force on particles; the default is Earth's gravity." ] .
+
+#################################################################
+# Navigation
+
+:NavigationMode :groundedIn
+    [ :x3dNode x3d:NavigationInfo ; :x3dField x3d:type ; :x3dDefault "\"EXAMINE\" \"ANY\"" ] .
+
+x3d:navigationType__ANY     a :NavigationMode .
+x3d:navigationType__WALK    a :NavigationMode .
+x3d:navigationType__EXAMINE a :NavigationMode .
+x3d:navigationType__FLY     a :NavigationMode .
+x3d:navigationType__LOOKAT  a :NavigationMode .
+x3d:navigationType__NONE    a :NavigationMode .
+x3d:navigationType__EXPLORE a :NavigationMode .
+
+:TraversableSpace
+    :derivedFrom :OccupancyConstraint , :GravityModel ;
+    :groundedIn
+    [ :x3dNode x3d:NavigationInfo ; :x3dField x3d:avatarSize ; :fieldIndex 1 ;
+      :x3dDefault "1.6" ; :quantityUnit unit:M ; :scaledBy :BoundViewpointFrame ;
+      :rule "The browser keeps the viewer this far above the terrain (23.4.4)." ] ,
+    [ :x3dNode x3d:NavigationInfo ; :x3dField x3d:avatarSize ; :fieldIndex 2 ;
+      :x3dDefault "0.75" ; :quantityUnit unit:M ; :scaledBy :BoundViewpointFrame ;
+      :rule "Tallest object the viewer can move over (23.4.4)." ] .
+
+:ReachableLocation
+    :derivedFrom :TraversableSpace ;
+    :groundedIn
+    [ :x3dNode x3d:NavigationInfo ; :x3dField x3d:speed ; :x3dDefault "1" ;
+      :quantityUnit unit:M-PER-SEC ; :scaledBy :BoundViewpointFrame ;
+      :rule "Travel time is path length divided by speed." ] .
+
+#################################################################
+# Collision
+
+:OccupancyConstraint :groundedIn
+    [ :x3dNode x3d:Collision ; :x3dField x3d:enabled ; :x3dDefault "true" ;
+      :rule "All geometry is collidable except IndexedLineSet and PointSet (23.4.2). WALK, FLY and NONE strictly support collision; ANY and EXAMINE may suspend it while navigating (23.2.4)." ] ,
+    [ :x3dNode x3d:Collision ; :x3dField x3d:hasProxy ;
+      :rule "Substitute geometry used only for collision; not rendered (23.4.2)." ] ,
+    [ :x3dNode x3d:NavigationInfo ; :x3dField x3d:avatarSize ; :fieldIndex 0 ;
+      :x3dDefault "0.25" ; :quantityUnit unit:M ; :scaledBy :BoundViewpointFrame ;
+      :rule "Geometry closer than this to the eye point blocks movement (23.4.4)." ] .
+
+#################################################################
+# Visibility
+
+:PerspectiveProjection :groundedIn
+    [ :x3dNode x3d:Viewpoint ; :x3dField x3d:fieldOfView ; :x3dDefault "0.7854" ; :quantityUnit unit:RAD ;
+      :rule "Angle across the smaller display dimension (23.3.1)." ] ,
+    [ :x3dNode x3d:Viewpoint ; :x3dField x3d:nearDistance ; :x3dDefault "-1" ; :quantityUnit unit:M ;
+      :rule "-1: no effect; the near plane falls back to avatarSize[0] / 2 (23.3.1, 23.4.4)." ] ,
+    [ :x3dNode x3d:Viewpoint ; :x3dField x3d:farDistance ; :x3dDefault "-1" ; :quantityUnit unit:M ;
+      :rule "-1: no effect; the far plane falls back to visibilityLimit (23.3.1)." ] .
+
+:PerceptualVolume
+    :derivedFrom :PerspectiveProjection , :Agent ;
+    :groundedIn
+    [ :x3dNode x3d:NavigationInfo ; :x3dField x3d:avatarSize ; :fieldIndex 0 ; :x3dDefault "0.25" ;
+      :quantityUnit unit:M ; :scaledBy :BoundViewpointFrame ;
+      :rule "Near plane = collision radius / 2 (23.4.4)." ] ,
+    [ :x3dNode x3d:NavigationInfo ; :x3dField x3d:visibilityLimit ; :x3dDefault "0" ;
+      :quantityUnit unit:M ; :scaledBy :BoundViewpointFrame ;
+      :rule "Far limit; 0 means infinite (23.4.4)." ] ,
+    [ :x3dNode x3d:Fog ; :x3dField x3d:visibilityRange ; :x3dDefault "0" ; :quantityUnit unit:M ;
+      :rule "Geometry beyond this distance is fully fogged; 0 disables fog." ] .
+
+:LineOfSight
+    :derivedFrom :PerceptualVolume ;
+    :groundedIn
+    [ :x3dNode x3d:Shape ; :x3dField x3d:visible ; :x3dDefault "true" ;
+      :rule "Invisible shapes neither appear nor block sight." ] ,
+    [ :x3dNode x3d:Switch ; :x3dField x3d:whichChoice ; :x3dDefault "-1" ;
+      :rule "Only the chosen child is rendered; -1 renders none." ] ,
+    [ :x3dNode x3d:Material ; :x3dField x3d:transparency ; :x3dDefault "0" ;
+      :rule "Transparent geometry does not block sight; 1 is fully clear." ] ,
+    [ :x3dNode x3d:IndexedFaceSet ; :x3dField x3d:solid ; :x3dDefault "true" ;
+      :rule "Single-sided geometry is culled from behind, so it does not block sight from its back." ] ,
+    [ :x3dNode x3d:VisibilitySensor ;
+      :rule "Runtime check of view-frustum visibility; it does not guarantee occlusion testing." ] .
+
+#################################################################
+# Spatial relations
+
+:SpatialRelationAssertion :groundedIn
+    [ :x3dNode x3d:X3DViewpointNode ; :x3dField x3d:orientation ;
+      :rule "Relative frame: level = view direction flattened against up; right = level x up; in front of = -level (toward the viewer); behind = +level. Use the live camera if the user has navigated." ] ,
+    [ :x3dNode x3d:HAnimHumanoid ;
+      :rule "Intrinsic frame of a humanoid: faces +Z with +Y up; +X is its left (ISO/IEC 19774)." ] ,
+    [ :x3dNode x3d:Billboard ; :x3dField x3d:axisOfRotation ; :x3dDefault "0 1 0" ;
+      :rule "A billboard turns its local +Z toward the viewer, so its intrinsic front depends on the perspective." ] .

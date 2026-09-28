@@ -1,3 +1,42 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
 [project]
-name="3d-spatial-cognition-skill"
-version="6.0.0"
+name = "perspective-agent"
+version = "7.0.0"
+description = "Grounded perspective-taking in X3D scenes: up, gravity, units, meter scale, visibility and collision"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.26",
+    "lxml>=5.0",
+    "pydantic>=2.6",
+    "networkx>=3.2",
+]
+
+[project.scripts]
+x3d-perspective = "perspective_agent.cli:main"
+
+[project.optional-dependencies]
+# Drive and capture the live view in X_ITE or X3DOM; then: python -m playwright install chromium
+live = [
+    "playwright>=1.40",
+    "pillow>=10.0",
+]
+# RDF export and SHACL validation of world-model records.
+rdf = [
+    "rdflib>=7.0",
+    "pyshacl>=0.26",
+]
+dev = [
+    "pytest>=8.0",
+    "rdflib>=7.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["live: drives X_ITE and X3DOM in a headless browser (needs the live extra and network); run with --live"]

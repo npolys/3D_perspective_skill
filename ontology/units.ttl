@@ -1,0 +1,12 @@
+@prefix :     <https://w3id.org/spatial-cognition#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:Unit a owl:Class ;
+    rdfs:subClassOf :Concept ;
+    rdfs:label "Unit"@en ;
+    rdfs:comment "A unit of measure the agent reports in."@en .
+
+:Meter a owl:NamedIndividual , :Unit ;
+    rdfs:label "meter"@en ;
+    rdfs:comment "The X3D base unit of length. Every distance the agent reports is converted to meters."@en .

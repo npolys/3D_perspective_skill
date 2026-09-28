@@ -1,0 +1,90 @@
+@prefix :     <https://w3id.org/spatial-cognition#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# X3D has no "left": it exists only relative to a viewer or an object's front.
+# So a spatial relation is asserted together with the perspective and frame of
+# reference it holds in.
+
+:SpatialRelationAssertion a owl:Class ;
+    rdfs:subClassOf :Concept ;
+    rdfs:label "Spatial relation assertion"@en ;
+    rdfs:comment "A relation between a figure and a ground object, stated from a named perspective in a named frame of reference."@en .
+
+:SpatialRelation a owl:Class ;
+    rdfs:subClassOf :Concept ;
+    rdfs:label "Spatial relation"@en ;
+    rdfs:comment "A kind of perspective-dependent relation, such as left of."@en .
+
+:LeftOf a owl:NamedIndividual , :SpatialRelation ;
+    rdfs:label "left of"@en ;
+    rdfs:comment "The figure lies on the -right side of the ground object. In the relative frame, right = level view direction x up."@en .
+
+:RightOf a owl:NamedIndividual , :SpatialRelation ;
+    rdfs:label "right of"@en ;
+    rdfs:comment "The figure lies on the +right side of the ground object. In the relative frame, right = level view direction x up, so the figure appears further right in the view at the same depth."@en .
+
+:InFrontOf a owl:NamedIndividual , :SpatialRelation ;
+    rdfs:label "in front of"@en ;
+    rdfs:comment "In the relative frame, the figure lies between the viewer and the ground object; in the intrinsic frame, on the ground object's front side."@en .
+
+:Behind a owl:NamedIndividual , :SpatialRelation ;
+    rdfs:label "behind"@en ;
+    rdfs:comment "In the relative frame, the figure lies farther from the viewer than the ground object; in the intrinsic frame, on its back side."@en .
+
+:Above a owl:NamedIndividual , :SpatialRelation ;
+    rdfs:label "above"@en ;
+    rdfs:comment "The figure lies on the +up side of the ground object; up is +Y of the bound Viewpoint's parent frame."@en .
+
+:Below a owl:NamedIndividual , :SpatialRelation ;
+    rdfs:label "below"@en ;
+    rdfs:comment "The figure lies on the -up side of the ground object, the direction gravity pulls under WALK."@en .
+
+:FrameOfReference a owl:Class ;
+    rdfs:subClassOf :Concept ;
+    rdfs:label "Frame of reference"@en ;
+    rdfs:comment "Whose axes a spatial relation uses."@en .
+
+:RelativeFrame a owl:NamedIndividual , :FrameOfReference ;
+    rdfs:label "relative frame"@en ;
+    rdfs:comment "The viewer's camera frame: +X right, +Y up, -Z forward."@en .
+
+:IntrinsicFrame a owl:NamedIndividual , :FrameOfReference ;
+    rdfs:label "intrinsic frame"@en ;
+    rdfs:comment "The ground object's own front and up, for example +Z for an HAnim humanoid or a glTF asset."@en .
+
+:AbsoluteFrame a owl:NamedIndividual , :FrameOfReference ;
+    rdfs:label "absolute frame"@en ;
+    rdfs:comment "The world frame: +Y up, or local geodetic up in geospatial scenes."@en .
+
+:figure a owl:ObjectProperty ;
+    rdfs:label "figure"@en ;
+    rdfs:comment "The object being located."@en ;
+    rdfs:domain :SpatialRelationAssertion .
+
+:ground a owl:ObjectProperty ;
+    rdfs:label "ground"@en ;
+    rdfs:comment "The object the figure is located relative to."@en ;
+    rdfs:domain :SpatialRelationAssertion .
+
+:relation a owl:ObjectProperty ;
+    rdfs:label "relation"@en ;
+    rdfs:comment "Which spatial relation holds."@en ;
+    rdfs:domain :SpatialRelationAssertion ;
+    rdfs:range :SpatialRelation .
+
+:fromPerspective a owl:ObjectProperty ;
+    rdfs:label "from perspective"@en ;
+    rdfs:comment "The perspective the relation is judged from."@en ;
+    rdfs:domain :SpatialRelationAssertion ;
+    rdfs:range :GroundedPerspective .
+
+:frameOfReference a owl:ObjectProperty ;
+    rdfs:label "frame of reference"@en ;
+    rdfs:comment "Whose axes the relation uses."@en ;
+    rdfs:domain :SpatialRelationAssertion ;
+    rdfs:range :FrameOfReference .
+
+:isLeftOf a owl:ObjectProperty ;
+    rdfs:label "is left of"@en ;
+    rdfs:comment "Shorthand for a SpatialRelationAssertion with relation LeftOf. Only meaningful when the perspective and frame of reference are known from context; state them with SpatialRelationAssertion when they are not."@en .

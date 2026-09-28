@@ -1,0 +1,5059 @@
+{
+  "source": {
+    "endpoint": "https://x3d-mcp.onrender.com/mcp",
+    "server": {
+      "name": "x3d-mcp",
+      "version": "1.27.2"
+    },
+    "protocolVersion": "2025-06-18",
+    "tool": "describe_node",
+    "retrieved": "2026-09-28"
+  },
+  "nodes": {
+    "Transform": {
+      "component": "Grouping",
+      "baseType": "X3DGroupingNode",
+      "containerField": "children",
+      "fields": {
+        "addChildren": {
+          "type": "MFNode",
+          "accessType": "inputOnly",
+          "default": null,
+          "acceptableNodeTypes": "X3DChildNode",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "bboxCenter": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "0 0 0",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "bboxDisplay": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "bboxSize": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "-1 -1 -1",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "center": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "0 0 0"
+        },
+        "children": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "X3DChildNode",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "removeChildren": {
+          "type": "MFNode",
+          "accessType": "inputOnly",
+          "default": null,
+          "acceptableNodeTypes": "X3DChildNode",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "rotation": {
+          "type": "SFRotation",
+          "accessType": "inputOutput",
+          "default": "0 0 1 0"
+        },
+        "scale": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "1 1 1"
+        },
+        "scaleOrientation": {
+          "type": "SFRotation",
+          "accessType": "inputOutput",
+          "default": "0 0 1 0"
+        },
+        "translation": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "0 0 0"
+        },
+        "visible": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "Group": {
+      "component": "Grouping",
+      "baseType": "X3DGroupingNode",
+      "containerField": "children",
+      "fields": {
+        "addChildren": {
+          "type": "MFNode",
+          "accessType": "inputOnly",
+          "default": null,
+          "acceptableNodeTypes": "X3DChildNode",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "bboxCenter": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "0 0 0",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "bboxDisplay": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "bboxSize": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "-1 -1 -1",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "children": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "X3DChildNode",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "removeChildren": {
+          "type": "MFNode",
+          "accessType": "inputOnly",
+          "default": null,
+          "acceptableNodeTypes": "X3DChildNode",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "visible": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "Switch": {
+      "component": "Grouping",
+      "baseType": "X3DGroupingNode",
+      "containerField": "children",
+      "fields": {
+        "addChildren": {
+          "type": "MFNode",
+          "accessType": "inputOnly",
+          "default": null,
+          "acceptableNodeTypes": "X3DChildNode",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "bboxCenter": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "0 0 0",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "bboxDisplay": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "bboxSize": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "-1 -1 -1",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "children": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "X3DChildNode",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "removeChildren": {
+          "type": "MFNode",
+          "accessType": "inputOnly",
+          "default": null,
+          "acceptableNodeTypes": "X3DChildNode",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "visible": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "whichChoice": {
+          "type": "SFInt32",
+          "accessType": "inputOutput",
+          "default": "-1",
+          "minInclusive": "-1"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "LOD": {
+      "component": "Navigation",
+      "baseType": "X3DGroupingNode",
+      "containerField": "children",
+      "fields": {
+        "addChildren": {
+          "type": "MFNode",
+          "accessType": "inputOnly",
+          "default": null,
+          "acceptableNodeTypes": "X3DChildNode",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "bboxCenter": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "0 0 0",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "bboxDisplay": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "bboxSize": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "-1 -1 -1",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "center": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "0 0 0"
+        },
+        "children": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "X3DChildNode",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "forceTransitions": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "false"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "level_changed": {
+          "type": "SFInt32",
+          "accessType": "outputOnly",
+          "default": null,
+          "minInclusive": "0"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "range": {
+          "type": "MFFloat",
+          "accessType": "initializeOnly",
+          "default": null
+        },
+        "removeChildren": {
+          "type": "MFNode",
+          "accessType": "inputOnly",
+          "default": null,
+          "acceptableNodeTypes": "X3DChildNode",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "visible": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "Billboard": {
+      "component": "Navigation",
+      "baseType": "X3DGroupingNode",
+      "containerField": "children",
+      "fields": {
+        "addChildren": {
+          "type": "MFNode",
+          "accessType": "inputOnly",
+          "default": null,
+          "acceptableNodeTypes": "X3DChildNode",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "axisOfRotation": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "0 1 0"
+        },
+        "bboxCenter": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "0 0 0",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "bboxDisplay": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "bboxSize": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "-1 -1 -1",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "children": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "X3DChildNode",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "removeChildren": {
+          "type": "MFNode",
+          "accessType": "inputOnly",
+          "default": null,
+          "acceptableNodeTypes": "X3DChildNode",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "visible": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "Collision": {
+      "component": "Navigation",
+      "baseType": "X3DGroupingNode",
+      "containerField": "children",
+      "fields": {
+        "addChildren": {
+          "type": "MFNode",
+          "accessType": "inputOnly",
+          "default": null,
+          "acceptableNodeTypes": "X3DChildNode",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "bboxCenter": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "0 0 0",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "bboxDisplay": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "bboxSize": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "-1 -1 -1",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "children": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "X3DChildNode",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "collideTime": {
+          "type": "SFTime",
+          "accessType": "outputOnly",
+          "default": null
+        },
+        "description": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DSensorNode"
+        },
+        "enabled": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DSensorNode"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "isActive": {
+          "type": "SFBool",
+          "accessType": "outputOnly",
+          "default": null,
+          "inheritedFrom": "X3DSensorNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "proxy": {
+          "type": "SFNode",
+          "accessType": "initializeOnly",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DChildNode"
+        },
+        "removeChildren": {
+          "type": "MFNode",
+          "accessType": "inputOnly",
+          "default": null,
+          "acceptableNodeTypes": "X3DChildNode",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "visible": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "Inline": {
+      "component": "Networking",
+      "baseType": "X3DChildNode",
+      "containerField": "children",
+      "fields": {
+        "autoRefresh": {
+          "type": "SFTime",
+          "accessType": "inputOutput",
+          "default": "0",
+          "minInclusive": "0",
+          "inheritedFrom": "X3DUrlObject"
+        },
+        "autoRefreshTimeLimit": {
+          "type": "SFTime",
+          "accessType": "inputOutput",
+          "default": "3600",
+          "minInclusive": "0",
+          "inheritedFrom": "X3DUrlObject"
+        },
+        "bboxCenter": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "0 0 0",
+          "inheritedFrom": "X3DBoundedObject"
+        },
+        "bboxDisplay": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false",
+          "inheritedFrom": "X3DBoundedObject"
+        },
+        "bboxSize": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "-1 -1 -1",
+          "inheritedFrom": "X3DBoundedObject"
+        },
+        "description": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DUrlObject"
+        },
+        "global": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "load": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DUrlObject"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "url": {
+          "type": "MFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DUrlObject"
+        },
+        "visible": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DBoundedObject"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "CADPart": {
+      "component": "CADGeometry",
+      "baseType": "X3DProductStructureChildNode",
+      "containerField": "children",
+      "fields": {
+        "addChildren": {
+          "type": "MFNode",
+          "accessType": "inputOnly",
+          "default": null,
+          "acceptableNodeTypes": "CADFace"
+        },
+        "bboxCenter": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "0 0 0",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "bboxDisplay": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "bboxSize": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "-1 -1 -1",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "center": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "0 0 0"
+        },
+        "children": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "CADFace"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "name": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DProductStructureChildNode"
+        },
+        "removeChildren": {
+          "type": "MFNode",
+          "accessType": "inputOnly",
+          "default": null,
+          "acceptableNodeTypes": "CADFace"
+        },
+        "rotation": {
+          "type": "SFRotation",
+          "accessType": "inputOutput",
+          "default": "0 0 1 0"
+        },
+        "scale": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "1 1 1"
+        },
+        "scaleOrientation": {
+          "type": "SFRotation",
+          "accessType": "inputOutput",
+          "default": "0 0 1 0"
+        },
+        "translation": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "0 0 0"
+        },
+        "visible": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "Shape": {
+      "component": "Shape",
+      "baseType": "X3DShapeNode",
+      "containerField": "children",
+      "fields": {
+        "appearance": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DAppearanceNode",
+          "inheritedFrom": "X3DShapeNode"
+        },
+        "bboxCenter": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "0 0 0",
+          "inheritedFrom": "X3DShapeNode"
+        },
+        "bboxDisplay": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false",
+          "inheritedFrom": "X3DShapeNode"
+        },
+        "bboxSize": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "-1 -1 -1",
+          "inheritedFrom": "X3DShapeNode"
+        },
+        "castShadow": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DShapeNode"
+        },
+        "geometry": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DGeometryNode",
+          "inheritedFrom": "X3DShapeNode"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "visible": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DShapeNode"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "Appearance": {
+      "component": "Shape",
+      "baseType": "X3DAppearanceNode",
+      "containerField": "appearance",
+      "fields": {
+        "acousticProperties": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "AcousticProperties"
+        },
+        "alphaCutoff": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "0.5",
+          "minInclusive": "0",
+          "maxInclusive": "1"
+        },
+        "alphaMode": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": "AUTO"
+        },
+        "backMaterial": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMaterialNode"
+        },
+        "fillProperties": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "FillProperties"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "lineProperties": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "LineProperties"
+        },
+        "material": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMaterialNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "pointProperties": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "PointProperties"
+        },
+        "shaders": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "X3DShaderNode"
+        },
+        "texture": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DTextureNode"
+        },
+        "textureTransform": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DTextureTransformNode"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "Material": {
+      "component": "Shape",
+      "baseType": "X3DOneSidedMaterialNode",
+      "containerField": "material",
+      "fields": {
+        "ambientIntensity": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "0.2",
+          "minInclusive": "0",
+          "maxInclusive": "1"
+        },
+        "ambientTexture": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DSingleTextureNode"
+        },
+        "ambientTextureMapping": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "diffuseColor": {
+          "type": "SFColor",
+          "accessType": "inputOutput",
+          "default": "0.8 0.8 0.8",
+          "minInclusive": "0",
+          "maxInclusive": "1"
+        },
+        "diffuseTexture": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DSingleTextureNode"
+        },
+        "diffuseTextureMapping": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "emissiveColor": {
+          "type": "SFColor",
+          "accessType": "inputOutput",
+          "default": "0 0 0",
+          "minInclusive": "0",
+          "maxInclusive": "1"
+        },
+        "emissiveTexture": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DSingleTextureNode"
+        },
+        "emissiveTextureMapping": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DOneSidedMaterialNode"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "normalScale": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "1",
+          "minInclusive": "0",
+          "inheritedFrom": "X3DOneSidedMaterialNode"
+        },
+        "normalTexture": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DSingleTextureNode"
+        },
+        "normalTextureMapping": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DOneSidedMaterialNode"
+        },
+        "occlusionStrength": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "1",
+          "minInclusive": "0",
+          "maxInclusive": "1"
+        },
+        "occlusionTexture": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DSingleTextureNode"
+        },
+        "occlusionTextureMapping": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "shininess": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "0.2",
+          "minInclusive": "0",
+          "maxInclusive": "1"
+        },
+        "shininessTexture": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DSingleTextureNode"
+        },
+        "shininessTextureMapping": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "specularColor": {
+          "type": "SFColor",
+          "accessType": "inputOutput",
+          "default": "0 0 0",
+          "minInclusive": "0",
+          "maxInclusive": "1"
+        },
+        "specularTexture": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DSingleTextureNode"
+        },
+        "specularTextureMapping": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "transparency": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "0",
+          "minInclusive": "0",
+          "maxInclusive": "1"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "PhysicalMaterial": {
+      "component": "Shape",
+      "baseType": "X3DOneSidedMaterialNode",
+      "containerField": "material",
+      "fields": {
+        "baseColor": {
+          "type": "SFColor",
+          "accessType": "inputOutput",
+          "default": "1 1 1",
+          "minInclusive": "0",
+          "maxInclusive": "1"
+        },
+        "baseTexture": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DSingleTextureNode"
+        },
+        "baseTextureMapping": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "emissiveColor": {
+          "type": "SFColor",
+          "accessType": "inputOutput",
+          "default": "0 0 0",
+          "minInclusive": "0",
+          "maxInclusive": "1"
+        },
+        "emissiveTexture": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DSingleTextureNode"
+        },
+        "emissiveTextureMapping": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DOneSidedMaterialNode"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "metallic": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "1",
+          "minInclusive": "0",
+          "maxInclusive": "1"
+        },
+        "metallicRoughnessTexture": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DSingleTextureNode"
+        },
+        "metallicRoughnessTextureMapping": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "normalScale": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "1",
+          "minInclusive": "0",
+          "inheritedFrom": "X3DOneSidedMaterialNode"
+        },
+        "normalTexture": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DSingleTextureNode"
+        },
+        "normalTextureMapping": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DOneSidedMaterialNode"
+        },
+        "occlusionStrength": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "1",
+          "minInclusive": "0",
+          "maxInclusive": "1"
+        },
+        "occlusionTexture": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DSingleTextureNode"
+        },
+        "occlusionTextureMapping": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "roughness": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "1",
+          "minInclusive": "0",
+          "maxInclusive": "1"
+        },
+        "transparency": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "0",
+          "minInclusive": "0",
+          "maxInclusive": "1"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "Box": {
+      "component": "Geometry3D",
+      "baseType": "X3DGeometryNode",
+      "containerField": "geometry",
+      "fields": {
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "size": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "2 2 2"
+        },
+        "solid": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "Sphere": {
+      "component": "Geometry3D",
+      "baseType": "X3DGeometryNode",
+      "containerField": "geometry",
+      "fields": {
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "radius": {
+          "type": "SFFloat",
+          "accessType": "initializeOnly",
+          "default": "1"
+        },
+        "solid": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "Cylinder": {
+      "component": "Geometry3D",
+      "baseType": "X3DGeometryNode",
+      "containerField": "geometry",
+      "fields": {
+        "bottom": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true"
+        },
+        "height": {
+          "type": "SFFloat",
+          "accessType": "initializeOnly",
+          "default": "2"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "radius": {
+          "type": "SFFloat",
+          "accessType": "initializeOnly",
+          "default": "1"
+        },
+        "side": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true"
+        },
+        "solid": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true"
+        },
+        "top": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "Cone": {
+      "component": "Geometry3D",
+      "baseType": "X3DGeometryNode",
+      "containerField": "geometry",
+      "fields": {
+        "bottom": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true"
+        },
+        "bottomRadius": {
+          "type": "SFFloat",
+          "accessType": "initializeOnly",
+          "default": "1"
+        },
+        "height": {
+          "type": "SFFloat",
+          "accessType": "initializeOnly",
+          "default": "2"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "side": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true"
+        },
+        "solid": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "IndexedFaceSet": {
+      "component": "Geometry3D",
+      "baseType": "X3DComposedGeometryNode",
+      "containerField": "geometry",
+      "fields": {
+        "attrib": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "X3DVertexAttributeNode",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "ccw": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "color": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DColorNode",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "colorIndex": {
+          "type": "MFInt32",
+          "accessType": "initializeOnly",
+          "default": null,
+          "minInclusive": "-1"
+        },
+        "colorPerVertex": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "convex": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true"
+        },
+        "coord": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DCoordinateNode",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "coordIndex": {
+          "type": "MFInt32",
+          "accessType": "initializeOnly",
+          "default": null,
+          "minInclusive": "-1"
+        },
+        "creaseAngle": {
+          "type": "SFFloat",
+          "accessType": "initializeOnly",
+          "default": "0",
+          "minInclusive": "0"
+        },
+        "fogCoord": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "FogCoordinate",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "normal": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DNormalNode",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "normalIndex": {
+          "type": "MFInt32",
+          "accessType": "initializeOnly",
+          "default": null,
+          "minInclusive": "-1"
+        },
+        "normalPerVertex": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "set_colorIndex": {
+          "type": "MFInt32",
+          "accessType": "inputOnly",
+          "default": null,
+          "minInclusive": "-1"
+        },
+        "set_coordIndex": {
+          "type": "MFInt32",
+          "accessType": "inputOnly",
+          "default": null,
+          "minInclusive": "-1"
+        },
+        "set_normalIndex": {
+          "type": "MFInt32",
+          "accessType": "inputOnly",
+          "default": null,
+          "minInclusive": "-1"
+        },
+        "set_texCoordIndex": {
+          "type": "MFInt32",
+          "accessType": "inputOnly",
+          "default": null,
+          "minInclusive": "-1"
+        },
+        "solid": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "tangent": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DTangentNode",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "texCoord": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DSingleTextureCoordinateNode|MultiTextureCoordinate",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "texCoordIndex": {
+          "type": "MFInt32",
+          "accessType": "initializeOnly",
+          "default": null,
+          "minInclusive": "-1"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "IndexedTriangleSet": {
+      "component": "Rendering",
+      "baseType": "X3DComposedGeometryNode",
+      "containerField": "geometry",
+      "fields": {
+        "attrib": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "X3DVertexAttributeNode",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "ccw": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "color": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DColorNode",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "colorPerVertex": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "coord": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DCoordinateNode",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "fogCoord": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "FogCoordinate",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "index": {
+          "type": "MFInt32",
+          "accessType": "initializeOnly",
+          "default": null,
+          "minInclusive": "0"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "normal": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DNormalNode",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "normalPerVertex": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "set_index": {
+          "type": "MFInt32",
+          "accessType": "inputOnly",
+          "default": null,
+          "minInclusive": "0"
+        },
+        "solid": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "tangent": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DTangentNode",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "texCoord": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DSingleTextureCoordinateNode|MultiTextureCoordinate",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "TriangleSet": {
+      "component": "Rendering",
+      "baseType": "X3DComposedGeometryNode",
+      "containerField": "geometry",
+      "fields": {
+        "attrib": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "X3DVertexAttributeNode",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "ccw": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "color": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DColorNode",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "colorPerVertex": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "coord": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DCoordinateNode",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "fogCoord": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "FogCoordinate",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "normal": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DNormalNode",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "normalPerVertex": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "solid": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "tangent": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DTangentNode",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "texCoord": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DSingleTextureCoordinateNode|MultiTextureCoordinate",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "IndexedQuadSet": {
+      "component": "CADGeometry",
+      "baseType": "X3DComposedGeometryNode",
+      "containerField": "geometry",
+      "fields": {
+        "attrib": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "X3DVertexAttributeNode",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "ccw": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "color": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DColorNode",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "colorPerVertex": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "coord": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DCoordinateNode",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "fogCoord": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "FogCoordinate",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "index": {
+          "type": "MFInt32",
+          "accessType": "initializeOnly",
+          "default": null,
+          "minInclusive": "0"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "normal": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DNormalNode",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "normalPerVertex": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "set_index": {
+          "type": "MFInt32",
+          "accessType": "inputOnly",
+          "default": null,
+          "minInclusive": "0"
+        },
+        "solid": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "tangent": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DTangentNode",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "texCoord": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DSingleTextureCoordinateNode|MultiTextureCoordinate",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "QuadSet": {
+      "component": "CADGeometry",
+      "baseType": "X3DComposedGeometryNode",
+      "containerField": "geometry",
+      "fields": {
+        "attrib": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "X3DVertexAttributeNode",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "ccw": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "color": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DColorNode",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "colorPerVertex": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "coord": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DCoordinateNode",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "fogCoord": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "FogCoordinate",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "normal": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DNormalNode",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "normalPerVertex": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "solid": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "tangent": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DTangentNode",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "texCoord": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DSingleTextureCoordinateNode|MultiTextureCoordinate",
+          "inheritedFrom": "X3DComposedGeometryNode"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "ElevationGrid": {
+      "component": "Geometry3D",
+      "baseType": "X3DGeometryNode",
+      "containerField": "geometry",
+      "fields": {
+        "attrib": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "X3DVertexAttributeNode"
+        },
+        "ccw": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true"
+        },
+        "color": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DColorNode"
+        },
+        "colorPerVertex": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true"
+        },
+        "creaseAngle": {
+          "type": "SFFloat",
+          "accessType": "initializeOnly",
+          "default": "0",
+          "minInclusive": "0"
+        },
+        "fogCoord": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "FogCoordinate"
+        },
+        "height": {
+          "type": "MFFloat",
+          "accessType": "initializeOnly",
+          "default": null
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "normal": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DNormalNode"
+        },
+        "normalPerVertex": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true"
+        },
+        "set_height": {
+          "type": "MFFloat",
+          "accessType": "inputOnly",
+          "default": null
+        },
+        "solid": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true"
+        },
+        "texCoord": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DSingleTextureCoordinateNode"
+        },
+        "xDimension": {
+          "type": "SFInt32",
+          "accessType": "initializeOnly",
+          "default": "0",
+          "minInclusive": "0"
+        },
+        "xSpacing": {
+          "type": "SFFloat",
+          "accessType": "initializeOnly",
+          "default": "1.0"
+        },
+        "zDimension": {
+          "type": "SFInt32",
+          "accessType": "initializeOnly",
+          "default": "0",
+          "minInclusive": "0"
+        },
+        "zSpacing": {
+          "type": "SFFloat",
+          "accessType": "initializeOnly",
+          "default": "1.0"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "Extrusion": {
+      "component": "Geometry3D",
+      "baseType": "X3DGeometryNode",
+      "containerField": "geometry",
+      "fields": {
+        "beginCap": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true"
+        },
+        "ccw": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true"
+        },
+        "convex": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true"
+        },
+        "creaseAngle": {
+          "type": "SFFloat",
+          "accessType": "initializeOnly",
+          "default": "0",
+          "minInclusive": "0"
+        },
+        "crossSection": {
+          "type": "MFVec2f",
+          "accessType": "initializeOnly",
+          "default": "1 1 1 -1 -1 -1 -1 1 1 1"
+        },
+        "endCap": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "orientation": {
+          "type": "MFRotation",
+          "accessType": "initializeOnly",
+          "default": "0 0 1 0"
+        },
+        "scale": {
+          "type": "MFVec2f",
+          "accessType": "initializeOnly",
+          "default": "1 1"
+        },
+        "set_crossSection": {
+          "type": "MFVec2f",
+          "accessType": "inputOnly",
+          "default": null
+        },
+        "set_orientation": {
+          "type": "MFRotation",
+          "accessType": "inputOnly",
+          "default": null
+        },
+        "set_scale": {
+          "type": "MFVec2f",
+          "accessType": "inputOnly",
+          "default": null
+        },
+        "set_spine": {
+          "type": "MFVec3f",
+          "accessType": "inputOnly",
+          "default": null
+        },
+        "solid": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "true"
+        },
+        "spine": {
+          "type": "MFVec3f",
+          "accessType": "initializeOnly",
+          "default": "0 0 0 0 1 0"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "Coordinate": {
+      "component": "Rendering",
+      "baseType": "X3DCoordinateNode",
+      "containerField": "coord",
+      "fields": {
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "point": {
+          "type": "MFVec3f",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "Viewpoint": {
+      "component": "Navigation",
+      "baseType": "X3DViewpointNode",
+      "containerField": "children",
+      "fields": {
+        "bindTime": {
+          "type": "SFTime",
+          "accessType": "outputOnly",
+          "default": null,
+          "inheritedFrom": "X3DBindableNode"
+        },
+        "centerOfRotation": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "0 0 0"
+        },
+        "description": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DViewpointNode"
+        },
+        "farDistance": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "-1",
+          "inheritedFrom": "X3DViewpointNode"
+        },
+        "fieldOfView": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "0.7854"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "isBound": {
+          "type": "SFBool",
+          "accessType": "outputOnly",
+          "default": null,
+          "inheritedFrom": "X3DBindableNode"
+        },
+        "jump": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DViewpointNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "navigationInfo": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "NavigationInfo",
+          "inheritedFrom": "X3DViewpointNode"
+        },
+        "nearDistance": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "-1",
+          "inheritedFrom": "X3DViewpointNode"
+        },
+        "orientation": {
+          "type": "SFRotation",
+          "accessType": "inputOutput",
+          "default": "0 0 1 0",
+          "inheritedFrom": "X3DViewpointNode"
+        },
+        "position": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "0 0 10"
+        },
+        "retainUserOffsets": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false",
+          "inheritedFrom": "X3DViewpointNode"
+        },
+        "set_bind": {
+          "type": "SFBool",
+          "accessType": "inputOnly",
+          "default": null,
+          "inheritedFrom": "X3DBindableNode"
+        },
+        "viewAll": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false",
+          "inheritedFrom": "X3DViewpointNode"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "OrthoViewpoint": {
+      "component": "Navigation",
+      "baseType": "X3DViewpointNode",
+      "containerField": "children",
+      "fields": {
+        "bindTime": {
+          "type": "SFTime",
+          "accessType": "outputOnly",
+          "default": null,
+          "inheritedFrom": "X3DBindableNode"
+        },
+        "centerOfRotation": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "0 0 0"
+        },
+        "description": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DViewpointNode"
+        },
+        "farDistance": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "-1",
+          "inheritedFrom": "X3DViewpointNode"
+        },
+        "fieldOfView": {
+          "type": "MFFloat",
+          "accessType": "inputOutput",
+          "default": "-1 -1 1 1"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "isBound": {
+          "type": "SFBool",
+          "accessType": "outputOnly",
+          "default": null,
+          "inheritedFrom": "X3DBindableNode"
+        },
+        "jump": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DViewpointNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "navigationInfo": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "NavigationInfo",
+          "inheritedFrom": "X3DViewpointNode"
+        },
+        "nearDistance": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "-1",
+          "inheritedFrom": "X3DViewpointNode"
+        },
+        "orientation": {
+          "type": "SFRotation",
+          "accessType": "inputOutput",
+          "default": "0 0 1 0",
+          "inheritedFrom": "X3DViewpointNode"
+        },
+        "position": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "0 0 10"
+        },
+        "retainUserOffsets": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false",
+          "inheritedFrom": "X3DViewpointNode"
+        },
+        "set_bind": {
+          "type": "SFBool",
+          "accessType": "inputOnly",
+          "default": null,
+          "inheritedFrom": "X3DBindableNode"
+        },
+        "viewAll": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false",
+          "inheritedFrom": "X3DViewpointNode"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "NavigationInfo": {
+      "component": "Navigation",
+      "baseType": "X3DBindableNode",
+      "containerField": "children",
+      "fields": {
+        "avatarSize": {
+          "type": "MFFloat",
+          "accessType": "inputOutput",
+          "default": "0.25 1.6 0.75",
+          "minInclusive": "0"
+        },
+        "bindTime": {
+          "type": "SFTime",
+          "accessType": "outputOnly",
+          "default": null,
+          "inheritedFrom": "X3DBindableNode"
+        },
+        "headlight": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "isBound": {
+          "type": "SFBool",
+          "accessType": "outputOnly",
+          "default": null,
+          "inheritedFrom": "X3DBindableNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "set_bind": {
+          "type": "SFBool",
+          "accessType": "inputOnly",
+          "default": null,
+          "inheritedFrom": "X3DBindableNode"
+        },
+        "speed": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "1",
+          "minInclusive": "0"
+        },
+        "transitionComplete": {
+          "type": "SFBool",
+          "accessType": "outputOnly",
+          "default": null
+        },
+        "transitionTime": {
+          "type": "SFTime",
+          "accessType": "inputOutput",
+          "default": "1.0",
+          "minInclusive": "0"
+        },
+        "transitionType": {
+          "type": "MFString",
+          "accessType": "inputOutput",
+          "default": "\"LINEAR\""
+        },
+        "type": {
+          "type": "MFString",
+          "accessType": "inputOutput",
+          "default": "\"EXAMINE\" \"ANY\""
+        },
+        "visibilityLimit": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "0",
+          "minInclusive": "0"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "Fog": {
+      "component": "EnvironmentalEffects",
+      "baseType": "X3DBindableNode",
+      "containerField": "children",
+      "fields": {
+        "bindTime": {
+          "type": "SFTime",
+          "accessType": "outputOnly",
+          "default": null,
+          "inheritedFrom": "X3DBindableNode"
+        },
+        "color": {
+          "type": "SFColor",
+          "accessType": "inputOutput",
+          "default": "1 1 1",
+          "minInclusive": "0",
+          "maxInclusive": "1",
+          "inheritedFrom": "X3DFogObject"
+        },
+        "fogType": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": "LINEAR",
+          "inheritedFrom": "X3DFogObject"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "isBound": {
+          "type": "SFBool",
+          "accessType": "outputOnly",
+          "default": null,
+          "inheritedFrom": "X3DBindableNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "set_bind": {
+          "type": "SFBool",
+          "accessType": "inputOnly",
+          "default": null,
+          "inheritedFrom": "X3DBindableNode"
+        },
+        "visibilityRange": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "0",
+          "minInclusive": "0",
+          "inheritedFrom": "X3DFogObject"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "ClipPlane": {
+      "component": "Rendering",
+      "baseType": "X3DChildNode",
+      "containerField": "children",
+      "fields": {
+        "enabled": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "plane": {
+          "type": "SFVec4f",
+          "accessType": "inputOutput",
+          "default": "0 1 0 0",
+          "minInclusive": "-1",
+          "maxInclusive": "1"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "Background": {
+      "component": "EnvironmentalEffects",
+      "baseType": "X3DBackgroundNode",
+      "containerField": "children",
+      "fields": {
+        "backUrl": {
+          "type": "MFString",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "bindTime": {
+          "type": "SFTime",
+          "accessType": "outputOnly",
+          "default": null,
+          "inheritedFrom": "X3DBindableNode"
+        },
+        "bottomUrl": {
+          "type": "MFString",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "frontUrl": {
+          "type": "MFString",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "groundAngle": {
+          "type": "MFFloat",
+          "accessType": "inputOutput",
+          "default": null,
+          "minInclusive": "0",
+          "maxInclusive": "1.5708",
+          "inheritedFrom": "X3DBackgroundNode"
+        },
+        "groundColor": {
+          "type": "MFColor",
+          "accessType": "inputOutput",
+          "default": null,
+          "minInclusive": "0",
+          "maxInclusive": "1",
+          "inheritedFrom": "X3DBackgroundNode"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "isBound": {
+          "type": "SFBool",
+          "accessType": "outputOnly",
+          "default": null,
+          "inheritedFrom": "X3DBindableNode"
+        },
+        "leftUrl": {
+          "type": "MFString",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "rightUrl": {
+          "type": "MFString",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "set_bind": {
+          "type": "SFBool",
+          "accessType": "inputOnly",
+          "default": null,
+          "inheritedFrom": "X3DBindableNode"
+        },
+        "skyAngle": {
+          "type": "MFFloat",
+          "accessType": "inputOutput",
+          "default": null,
+          "minInclusive": "0",
+          "maxInclusive": "3.1416",
+          "inheritedFrom": "X3DBackgroundNode"
+        },
+        "skyColor": {
+          "type": "MFColor",
+          "accessType": "inputOutput",
+          "default": "0 0 0",
+          "minInclusive": "0",
+          "maxInclusive": "1",
+          "inheritedFrom": "X3DBackgroundNode"
+        },
+        "topUrl": {
+          "type": "MFString",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "transparency": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "0",
+          "minInclusive": "0",
+          "maxInclusive": "1",
+          "inheritedFrom": "X3DBackgroundNode"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "DirectionalLight": {
+      "component": "Lighting",
+      "baseType": "X3DLightNode",
+      "containerField": "children",
+      "fields": {
+        "ambientIntensity": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "0",
+          "minInclusive": "0",
+          "maxInclusive": "1",
+          "inheritedFrom": "X3DLightNode"
+        },
+        "color": {
+          "type": "SFColor",
+          "accessType": "inputOutput",
+          "default": "1 1 1",
+          "minInclusive": "0",
+          "maxInclusive": "1",
+          "inheritedFrom": "X3DLightNode"
+        },
+        "direction": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "0 0 -1"
+        },
+        "global": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false"
+        },
+        "intensity": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "1",
+          "minInclusive": "0",
+          "inheritedFrom": "X3DLightNode"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "on": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DLightNode"
+        },
+        "shadowIntensity": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "1",
+          "minInclusive": "0",
+          "maxInclusive": "1",
+          "inheritedFrom": "X3DLightNode"
+        },
+        "shadows": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false",
+          "inheritedFrom": "X3DLightNode"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "PointLight": {
+      "component": "Lighting",
+      "baseType": "X3DLightNode",
+      "containerField": "children",
+      "fields": {
+        "ambientIntensity": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "0",
+          "minInclusive": "0",
+          "maxInclusive": "1",
+          "inheritedFrom": "X3DLightNode"
+        },
+        "attenuation": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "1 0 0",
+          "minInclusive": "0"
+        },
+        "color": {
+          "type": "SFColor",
+          "accessType": "inputOutput",
+          "default": "1 1 1",
+          "minInclusive": "0",
+          "maxInclusive": "1",
+          "inheritedFrom": "X3DLightNode"
+        },
+        "global": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true"
+        },
+        "intensity": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "1",
+          "minInclusive": "0",
+          "inheritedFrom": "X3DLightNode"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "location": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "0 0 0"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "on": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DLightNode"
+        },
+        "radius": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "100",
+          "minInclusive": "0"
+        },
+        "shadowIntensity": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "1",
+          "minInclusive": "0",
+          "maxInclusive": "1",
+          "inheritedFrom": "X3DLightNode"
+        },
+        "shadows": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false",
+          "inheritedFrom": "X3DLightNode"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "SpotLight": {
+      "component": "Lighting",
+      "baseType": "X3DLightNode",
+      "containerField": "children",
+      "fields": {
+        "ambientIntensity": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "0",
+          "minInclusive": "0",
+          "maxInclusive": "1",
+          "inheritedFrom": "X3DLightNode"
+        },
+        "attenuation": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "1 0 0",
+          "minInclusive": "0"
+        },
+        "beamWidth": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "0.589049",
+          "maxInclusive": "1.570796"
+        },
+        "color": {
+          "type": "SFColor",
+          "accessType": "inputOutput",
+          "default": "1 1 1",
+          "minInclusive": "0",
+          "maxInclusive": "1",
+          "inheritedFrom": "X3DLightNode"
+        },
+        "cutOffAngle": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "1.570796",
+          "maxInclusive": "1.570796"
+        },
+        "direction": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "0 0 -1"
+        },
+        "global": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true"
+        },
+        "intensity": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "1",
+          "minInclusive": "0",
+          "inheritedFrom": "X3DLightNode"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "location": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "0 0 0"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "on": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DLightNode"
+        },
+        "radius": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "100",
+          "minInclusive": "0"
+        },
+        "shadowIntensity": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "1",
+          "minInclusive": "0",
+          "maxInclusive": "1",
+          "inheritedFrom": "X3DLightNode"
+        },
+        "shadows": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false",
+          "inheritedFrom": "X3DLightNode"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "VisibilitySensor": {
+      "component": "EnvironmentalSensor",
+      "baseType": "X3DEnvironmentalSensorNode",
+      "containerField": "children",
+      "fields": {
+        "center": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "0 0 0"
+        },
+        "description": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DSensorNode"
+        },
+        "enabled": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DSensorNode"
+        },
+        "enterTime": {
+          "type": "SFTime",
+          "accessType": "outputOnly",
+          "default": null
+        },
+        "exitTime": {
+          "type": "SFTime",
+          "accessType": "outputOnly",
+          "default": null
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "isActive": {
+          "type": "SFBool",
+          "accessType": "outputOnly",
+          "default": null,
+          "inheritedFrom": "X3DSensorNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "size": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "0 0 0",
+          "minInclusive": "0",
+          "inheritedFrom": "X3DEnvironmentalSensorNode"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "ProximitySensor": {
+      "component": "EnvironmentalSensor",
+      "baseType": "X3DEnvironmentalSensorNode",
+      "containerField": "children",
+      "fields": {
+        "center": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "0 0 0"
+        },
+        "centerOfRotation_changed": {
+          "type": "SFVec3f",
+          "accessType": "outputOnly",
+          "default": null
+        },
+        "description": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DSensorNode"
+        },
+        "enabled": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DSensorNode"
+        },
+        "enterTime": {
+          "type": "SFTime",
+          "accessType": "outputOnly",
+          "default": null
+        },
+        "exitTime": {
+          "type": "SFTime",
+          "accessType": "outputOnly",
+          "default": null
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "isActive": {
+          "type": "SFBool",
+          "accessType": "outputOnly",
+          "default": null,
+          "inheritedFrom": "X3DSensorNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "orientation_changed": {
+          "type": "SFRotation",
+          "accessType": "outputOnly",
+          "default": null
+        },
+        "position_changed": {
+          "type": "SFVec3f",
+          "accessType": "outputOnly",
+          "default": null
+        },
+        "size": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "0 0 0",
+          "minInclusive": "0",
+          "inheritedFrom": "X3DEnvironmentalSensorNode"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "HAnimHumanoid": {
+      "component": "HAnim",
+      "baseType": "X3DChildNode",
+      "containerField": "children",
+      "fields": {
+        "bboxCenter": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "0 0 0",
+          "inheritedFrom": "X3DBoundedObject"
+        },
+        "bboxDisplay": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false",
+          "inheritedFrom": "X3DBoundedObject"
+        },
+        "bboxSize": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "-1 -1 -1",
+          "inheritedFrom": "X3DBoundedObject"
+        },
+        "center": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "0 0 0"
+        },
+        "children": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "HAnimPose"
+        },
+        "description": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "info": {
+          "type": "MFString",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "jointBindingPositions": {
+          "type": "MFVec3f",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "jointBindingRotations": {
+          "type": "MFRotation",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "jointBindingScales": {
+          "type": "MFVec3f",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "joints": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "HAnimJoint"
+        },
+        "loa": {
+          "type": "SFInt32",
+          "accessType": "inputOutput",
+          "default": "-1",
+          "minInclusive": "-1",
+          "maxInclusive": "5"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "motions": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "HAnimMotion"
+        },
+        "motionsEnabled": {
+          "type": "MFBool",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "name": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "rotation": {
+          "type": "SFRotation",
+          "accessType": "inputOutput",
+          "default": "0 0 1 0"
+        },
+        "scale": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "1 1 1"
+        },
+        "scaleOrientation": {
+          "type": "SFRotation",
+          "accessType": "inputOutput",
+          "default": "0 0 1 0"
+        },
+        "segments": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "HAnimSegment"
+        },
+        "sites": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "HAnimSite"
+        },
+        "skeletalConfiguration": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": "BASIC"
+        },
+        "skeleton": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "HAnimJoint|HAnimSite"
+        },
+        "skin": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "Group|Transform|Shape|IndexedFaceSet"
+        },
+        "skinBindingCoords": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "Coordinate|CoordinateDouble"
+        },
+        "skinBindingNormals": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DNormalNode"
+        },
+        "skinCoord": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "Coordinate|CoordinateDouble"
+        },
+        "skinNormal": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DNormalNode"
+        },
+        "translation": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "0 0 0"
+        },
+        "version": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": "2.0"
+        },
+        "viewpoints": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "HAnimSite"
+        },
+        "visible": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DBoundedObject"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "HAnimJoint": {
+      "component": "HAnim",
+      "baseType": "X3DChildNode",
+      "containerField": "children",
+      "fields": {
+        "addChildren": {
+          "type": "MFNode",
+          "accessType": "inputOnly",
+          "default": null,
+          "acceptableNodeTypes": "HAnimJoint|HAnimSegment"
+        },
+        "bboxCenter": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "0 0 0",
+          "inheritedFrom": "X3DBoundedObject"
+        },
+        "bboxDisplay": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false",
+          "inheritedFrom": "X3DBoundedObject"
+        },
+        "bboxSize": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "-1 -1 -1",
+          "inheritedFrom": "X3DBoundedObject"
+        },
+        "center": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "0 0 0"
+        },
+        "children": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "HAnimJoint|HAnimSegment"
+        },
+        "description": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "displacers": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "HAnimDisplacer"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "limitOrientation": {
+          "type": "SFRotation",
+          "accessType": "inputOutput",
+          "default": "0 0 1 0"
+        },
+        "llimit": {
+          "type": "MFFloat",
+          "accessType": "inputOutput",
+          "default": "0 0 0"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "name": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "removeChildren": {
+          "type": "MFNode",
+          "accessType": "inputOnly",
+          "default": null,
+          "acceptableNodeTypes": "HAnimJoint|HAnimSegment"
+        },
+        "rotation": {
+          "type": "SFRotation",
+          "accessType": "inputOutput",
+          "default": "0 0 1 0"
+        },
+        "scale": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "1 1 1"
+        },
+        "scaleOrientation": {
+          "type": "SFRotation",
+          "accessType": "inputOutput",
+          "default": "0 0 1 0"
+        },
+        "skinCoordIndex": {
+          "type": "MFInt32",
+          "accessType": "inputOutput",
+          "default": null,
+          "minInclusive": "0"
+        },
+        "skinCoordWeight": {
+          "type": "MFFloat",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "stiffness": {
+          "type": "MFFloat",
+          "accessType": "inputOutput",
+          "default": "0 0 0",
+          "minInclusive": "0",
+          "maxInclusive": "1"
+        },
+        "translation": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "0 0 0"
+        },
+        "ulimit": {
+          "type": "MFFloat",
+          "accessType": "inputOutput",
+          "default": "0 0 0"
+        },
+        "visible": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DBoundedObject"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "HAnimSite": {
+      "component": "HAnim",
+      "baseType": "X3DGroupingNode",
+      "containerField": "children",
+      "fields": {
+        "addChildren": {
+          "type": "MFNode",
+          "accessType": "inputOnly",
+          "default": null,
+          "acceptableNodeTypes": "X3DChildNode",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "bboxCenter": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "0 0 0",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "bboxDisplay": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "bboxSize": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "-1 -1 -1",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "center": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "0 0 0"
+        },
+        "children": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "X3DChildNode",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "description": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "name": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null
+        },
+        "removeChildren": {
+          "type": "MFNode",
+          "accessType": "inputOnly",
+          "default": null,
+          "acceptableNodeTypes": "X3DChildNode",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "rotation": {
+          "type": "SFRotation",
+          "accessType": "inputOutput",
+          "default": "0 0 1 0"
+        },
+        "scale": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "1 1 1"
+        },
+        "scaleOrientation": {
+          "type": "SFRotation",
+          "accessType": "inputOutput",
+          "default": "0 0 1 0"
+        },
+        "translation": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "0 0 0"
+        },
+        "visible": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "RigidBodyCollection": {
+      "component": "RigidBodyPhysics",
+      "baseType": "X3DChildNode",
+      "containerField": "children",
+      "fields": {
+        "autoDisable": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false"
+        },
+        "bboxCenter": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "0 0 0",
+          "inheritedFrom": "X3DBoundedObject"
+        },
+        "bboxDisplay": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false",
+          "inheritedFrom": "X3DBoundedObject"
+        },
+        "bboxSize": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "-1 -1 -1",
+          "inheritedFrom": "X3DBoundedObject"
+        },
+        "bodies": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "RigidBody"
+        },
+        "collider": {
+          "type": "SFNode",
+          "accessType": "initializeOnly",
+          "default": "NULL",
+          "acceptableNodeTypes": "CollisionCollection"
+        },
+        "constantForceMix": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "0.0001"
+        },
+        "contactSurfaceThickness": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "0"
+        },
+        "disableAngularSpeed": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "0"
+        },
+        "disableLinearSpeed": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "0"
+        },
+        "disableTime": {
+          "type": "SFTime",
+          "accessType": "inputOutput",
+          "default": "0",
+          "minInclusive": "0"
+        },
+        "enabled": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true"
+        },
+        "errorCorrection": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "0.8"
+        },
+        "gravity": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "0 -9.8 0"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "iterations": {
+          "type": "SFInt32",
+          "accessType": "inputOutput",
+          "default": "10"
+        },
+        "joints": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "X3DRigidJointNode"
+        },
+        "maxCorrectionSpeed": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "-1"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "preferAccuracy": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false"
+        },
+        "set_contacts": {
+          "type": "MFNode",
+          "accessType": "inputOnly",
+          "default": null,
+          "acceptableNodeTypes": "Contact"
+        },
+        "visible": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DBoundedObject"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "ForcePhysicsModel": {
+      "component": "ParticleSystems",
+      "baseType": "X3DParticlePhysicsModelNode",
+      "containerField": "physics",
+      "fields": {
+        "enabled": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DParticlePhysicsModelNode"
+        },
+        "force": {
+          "type": "SFVec3f",
+          "accessType": "inputOutput",
+          "default": "0 -9.8 0"
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "GeoOrigin": {
+      "component": "Geospatial",
+      "baseType": "X3DNode",
+      "containerField": "geoOrigin",
+      "fields": {
+        "geoCoords": {
+          "type": "SFVec3d",
+          "accessType": "inputOutput",
+          "default": "0 0 0"
+        },
+        "geoSystem": {
+          "type": "MFString",
+          "accessType": "initializeOnly",
+          "default": "\"GD\" \"WE\""
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "rotateYUp": {
+          "type": "SFBool",
+          "accessType": "initializeOnly",
+          "default": "false"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "GeoViewpoint": {
+      "component": "Geospatial",
+      "baseType": "X3DViewpointNode",
+      "containerField": "children",
+      "fields": {
+        "bindTime": {
+          "type": "SFTime",
+          "accessType": "outputOnly",
+          "default": null,
+          "inheritedFrom": "X3DBindableNode"
+        },
+        "centerOfRotation": {
+          "type": "SFVec3d",
+          "accessType": "inputOutput",
+          "default": "0 0 0"
+        },
+        "description": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DViewpointNode"
+        },
+        "farDistance": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "-1",
+          "inheritedFrom": "X3DViewpointNode"
+        },
+        "fieldOfView": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "0.7854"
+        },
+        "geoOrigin": {
+          "type": "SFNode",
+          "accessType": "initializeOnly",
+          "default": "NULL",
+          "acceptableNodeTypes": "GeoOrigin"
+        },
+        "geoSystem": {
+          "type": "MFString",
+          "accessType": "initializeOnly",
+          "default": "\"GD\" \"WE\""
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "isBound": {
+          "type": "SFBool",
+          "accessType": "outputOnly",
+          "default": null,
+          "inheritedFrom": "X3DBindableNode"
+        },
+        "jump": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DViewpointNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "navigationInfo": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "NavigationInfo",
+          "inheritedFrom": "X3DViewpointNode"
+        },
+        "nearDistance": {
+          "type": "SFFloat",
+          "accessType": "inputOutput",
+          "default": "-1",
+          "inheritedFrom": "X3DViewpointNode"
+        },
+        "orientation": {
+          "type": "SFRotation",
+          "accessType": "inputOutput",
+          "default": "0 0 1 0",
+          "inheritedFrom": "X3DViewpointNode"
+        },
+        "position": {
+          "type": "SFVec3d",
+          "accessType": "inputOutput",
+          "default": "0 0 100000"
+        },
+        "retainUserOffsets": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false",
+          "inheritedFrom": "X3DViewpointNode"
+        },
+        "set_bind": {
+          "type": "SFBool",
+          "accessType": "inputOnly",
+          "default": null,
+          "inheritedFrom": "X3DBindableNode"
+        },
+        "speedFactor": {
+          "type": "SFFloat",
+          "accessType": "initializeOnly",
+          "default": "1.0",
+          "minInclusive": "0"
+        },
+        "viewAll": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false",
+          "inheritedFrom": "X3DViewpointNode"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    },
+    "GeoLocation": {
+      "component": "Geospatial",
+      "baseType": "X3DGroupingNode",
+      "containerField": "children",
+      "fields": {
+        "addChildren": {
+          "type": "MFNode",
+          "accessType": "inputOnly",
+          "default": null,
+          "acceptableNodeTypes": "X3DChildNode",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "bboxCenter": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "0 0 0",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "bboxDisplay": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "false",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "bboxSize": {
+          "type": "SFVec3f",
+          "accessType": "initializeOnly",
+          "default": "-1 -1 -1",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "children": {
+          "type": "MFNode",
+          "accessType": "inputOutput",
+          "default": null,
+          "acceptableNodeTypes": "X3DChildNode",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "geoCoords": {
+          "type": "SFVec3d",
+          "accessType": "inputOutput",
+          "default": "0 0 0"
+        },
+        "geoOrigin": {
+          "type": "SFNode",
+          "accessType": "initializeOnly",
+          "default": "NULL",
+          "acceptableNodeTypes": "GeoOrigin"
+        },
+        "geoSystem": {
+          "type": "MFString",
+          "accessType": "initializeOnly",
+          "default": "\"GD\" \"WE\""
+        },
+        "IS": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "IS",
+          "inheritedFrom": "X3DNode"
+        },
+        "metadata": {
+          "type": "SFNode",
+          "accessType": "inputOutput",
+          "default": "NULL",
+          "acceptableNodeTypes": "X3DMetadataObject",
+          "inheritedFrom": "X3DNode"
+        },
+        "removeChildren": {
+          "type": "MFNode",
+          "accessType": "inputOnly",
+          "default": null,
+          "acceptableNodeTypes": "X3DChildNode",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "visible": {
+          "type": "SFBool",
+          "accessType": "inputOutput",
+          "default": "true",
+          "inheritedFrom": "X3DGroupingNode"
+        },
+        "DEF": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "USE": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "class": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "id": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        },
+        "style": {
+          "type": "SFString",
+          "accessType": "inputOutput",
+          "default": null,
+          "inheritedFrom": "X3DNode"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+@prefix :     <https://w3id.org/spatial-cognition#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:BindingStack a owl:Class ;
+    rdfs:subClassOf :Concept ;
+    rdfs:label "Binding stack"@en ;
+    rdfs:comment "The stack of bindable nodes of one type (Viewpoint, NavigationInfo, Fog and others). The node on top is the one in effect, so it decides the agent's current perspective and body."@en .

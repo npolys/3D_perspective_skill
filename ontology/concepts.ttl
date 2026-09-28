@@ -1,2 +1,18 @@
-:Agent a :Concept .
-:Perspective a :Concept .
+@prefix :     <https://w3id.org/spatial-cognition#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<https://w3id.org/spatial-cognition> a owl:Ontology ;
+    rdfs:label "Spatial cognition ontology for grounded 3D perspective-taking"@en ;
+    rdfs:comment "Concepts an agent reasons with when it takes a perspective in an X3D scene. x3d_grounding.ttl links each concept to the X3D Ontology 4.1 nodes and fields it is computed from."@en ;
+    rdfs:seeAlso <https://www.web3d.org/specifications/X3dOntology4.1> ;
+    owl:versionInfo "7.0.0" .
+
+:Concept a owl:Class ;
+    rdfs:label "Concept"@en ;
+    rdfs:comment "Top class for the agent's spatial concepts."@en .
+
+:Agent a owl:Class ;
+    rdfs:subClassOf :Concept ;
+    rdfs:label "Agent"@en ;
+    rdfs:comment "The embodied viewer taking a perspective: an eye point with a collision radius, an eye height and a step height."@en .

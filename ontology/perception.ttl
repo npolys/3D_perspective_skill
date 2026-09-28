@@ -1,2 +1,8 @@
-:PerceptualAngle a :Concept .
-:PerceptualVolume a :Concept .
+@prefix :     <https://w3id.org/spatial-cognition#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:PerceptualVolume a owl:Class ;
+    rdfs:subClassOf :Concept ;
+    rdfs:label "Perceptual volume"@en ;
+    rdfs:comment "The region the agent can see before occlusion is considered: the view frustum between the near and far planes, cut off by fog."@en .

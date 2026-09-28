@@ -1,0 +1,8 @@
+@prefix :     <https://w3id.org/spatial-cognition#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:GroundedPerspective a owl:Class ;
+    rdfs:subClassOf :Concept ;
+    rdfs:label "Grounded perspective"@en ;
+    rdfs:comment "A perspective fully determined by the scene: the bound Viewpoint, the bound NavigationInfo (or the one the Viewpoint names), the Viewpoint's ancestor transforms and the scene's unit statements."@en .

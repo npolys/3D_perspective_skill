@@ -1,0 +1,2 @@
+# Keep patches byte-exact so `git am` applies them cleanly.
+*.patch -text

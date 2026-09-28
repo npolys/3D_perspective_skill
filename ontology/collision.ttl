@@ -1,1 +1,8 @@
-:OccupancyConstraint a :Concept .
+@prefix :     <https://w3id.org/spatial-cognition#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:OccupancyConstraint a owl:Class ;
+    rdfs:subClassOf :Concept ;
+    rdfs:label "Occupancy constraint"@en ;
+    rdfs:comment "Space the agent's body may not enter: collidable geometry, which must stay at least the collision radius from the eye point."@en .

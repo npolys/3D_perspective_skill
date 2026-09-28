@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "x3d": {
+      "type": "http",
+      "url": "https://x3d-mcp.onrender.com/mcp"
+    }
+  }
+}

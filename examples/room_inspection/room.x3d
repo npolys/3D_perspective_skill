@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.1//EN" "https://www.web3d.org/specifications/x3d-4.1.dtd">
+<X3D profile="Immersive" version="4.1" xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="https://www.web3d.org/specifications/x3d-4.1.xsd">
+  <head>
+    <meta name="title" content="room.x3d"/>
+    <meta name="description" content="A 6 m x 6 m room with a table, a lamp and a plant, seen from the entry at eye height. Meters, +Y up. The floor extends under the entry so that WALK gravity finds support there. Used to compare the imagined 2D view with the rendered screenshot."/>
+  </head>
+  <Scene>
+    <NavigationInfo DEF="Visitor" type='"WALK" "ANY"' avatarSize="0.25 1.6 0.75"/>
+    <Viewpoint DEF="Entry" description="Entry, eye height, looking into the room" position="0 1.6 4" orientation="0 0 1 0" fieldOfView="0.7854"/>
+    <Viewpoint DEF="Side" description="Right side of the room, eye height, looking toward -X" position="2.9 1.6 -1" orientation="0 1 0 1.5708" fieldOfView="0.7854"/>
+    <Viewpoint DEF="Corner" description="Front-left corner, eye height, looking across the room" position="-2.5 1.6 2.5" orientation="0 1 0 -0.6" fieldOfView="0.7854"/>
+    <Viewpoint DEF="Overlook" description="Authored 2.8 m up, pitched down; WALK gravity may lower it" position="0 2.8 3.5" orientation="1 0 0 -0.45" fieldOfView="0.7854"/>
+    <Background skyColor="0.85 0.9 1"/>
+    <DirectionalLight direction="-0.3 -1 -0.5" intensity="0.8"/>
+    <Transform DEF="Floor" translation="0 -0.05 1">
+      <Shape>
+        <Appearance><Material diffuseColor="0.55 0.55 0.55"/></Appearance>
+        <Box size="6 0.1 8"/>
+      </Shape>
+    </Transform>
+    <Transform DEF="BackWall" translation="0 1.5 -3">
+      <Shape>
+        <Appearance><Material diffuseColor="0.95 0.92 0.85"/></Appearance>
+        <Box size="6 3 0.1"/>
+      </Shape>
+    </Transform>
+    <Transform DEF="Table" translation="0 0.375 0">
+      <Shape>
+        <Appearance><Material diffuseColor="0.8 0.15 0.1"/></Appearance>
+        <Box size="1.2 0.75 0.8"/>
+      </Shape>
+    </Transform>
+    <Transform DEF="Lamp" translation="-1.5 1.2 -1">
+      <Shape>
+        <Appearance><Material diffuseColor="0.1 0.3 0.9"/></Appearance>
+        <Sphere radius="0.25"/>
+      </Shape>
+    </Transform>
+    <Transform DEF="Plant" translation="1.5 0.5 -0.5">
+      <Shape>
+        <Appearance><Material diffuseColor="0.1 0.7 0.2"/></Appearance>
+        <Cylinder radius="0.2" height="1"/>
+      </Shape>
+    </Transform>
+  </Scene>
+</X3D>

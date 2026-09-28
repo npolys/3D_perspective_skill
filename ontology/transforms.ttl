@@ -1,0 +1,8 @@
+@prefix :     <https://w3id.org/spatial-cognition#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:Transform a owl:Class ;
+    rdfs:subClassOf :Concept ;
+    rdfs:label "Coordinate transformation"@en ;
+    rdfs:comment "The mapping from one coordinate frame into its parent: translation, rotation, scale, scale orientation and center. This is the mathematical transformation, not the X3D Transform node; x3d_grounding.ttl links it to the nodes that carry these fields."@en .

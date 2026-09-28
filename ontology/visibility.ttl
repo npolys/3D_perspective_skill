@@ -1,1 +1,8 @@
-:ObservationRegion a :Concept .
+@prefix :     <https://w3id.org/spatial-cognition#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:LineOfSight a owl:Class ;
+    rdfs:subClassOf :Concept ;
+    rdfs:label "Line of sight"@en ;
+    rdfs:comment "An unobstructed path from the eye point to a target inside the perceptual volume. Rendered, opaque, front-facing geometry blocks it; transparent, hidden or back-facing single-sided geometry does not."@en .

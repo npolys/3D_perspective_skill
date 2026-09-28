@@ -1,2 +1,8 @@
-:WalkNavigation a :NavigationMode .
-:FlyNavigation a :NavigationMode .
+@prefix :     <https://w3id.org/spatial-cognition#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:NavigationMode a owl:Class ;
+    rdfs:subClassOf :Concept ;
+    rdfs:label "Navigation mode"@en ;
+    rdfs:comment "How the agent moves through the scene. Its members are the X3D NavigationInfo type values, typed as navigation modes in x3d_grounding.ttl."@en .

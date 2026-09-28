@@ -1,0 +1,8 @@
+@prefix :     <https://w3id.org/spatial-cognition#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:PerspectiveProjection a owl:Class ;
+    rdfs:subClassOf :Concept ;
+    rdfs:label "Perspective projection"@en ;
+    rdfs:comment "The projection a Viewpoint defines: a field of view across the smaller display dimension, plus near and far planes. An OrthoViewpoint defines a parallel projection instead."@en .

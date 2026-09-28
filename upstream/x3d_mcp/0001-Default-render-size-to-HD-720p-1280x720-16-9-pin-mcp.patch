@@ -1,0 +1,194 @@
+From 7a99dbca845df603ebc985b468dba76e806f6521 Mon Sep 17 00:00:00 2001
+From: Nicholas Polys <npolys@vt.edu>
+Date: Mon, 28 Sep 2026 00:38:14 -0400
+Subject: [PATCH] Default render size to HD 720p (1280x720, 16:9); pin mcp<2
+
+render_image, render_current_scene, x3dom_page and x3dom_starter now
+default to 1280x720 (HD, 16:9) instead of 720x540 and 800x600 px (4:3),
+via shared _DEFAULT_WIDTH/_DEFAULT_HEIGHT constants in tools/render.py.
+Viewpoint fieldOfView spans the smaller display dimension, so the
+default 0.7854 rad now gives a 72.7-degree horizontal view.
+
+Also pin mcp<2: mcp 2.x removed mcp.server.fastmcp, which src/ imports,
+so a fresh install or redeploy currently fails at import time.
+---
+ pyproject.toml       |  2 +-
+ src/tools/prompts.py |  5 +++--
+ src/tools/render.py  | 42 +++++++++++++++++++++++++-----------------
+ tests/test_render.py |  8 ++++++++
+ 4 files changed, 37 insertions(+), 20 deletions(-)
+
+diff --git a/pyproject.toml b/pyproject.toml
+index 5f15c63..16b0600 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -8,7 +8,7 @@ version = "0.1.0"
+ description = "MCP server for generating, validating, and converting valid X3D content"
+ requires-python = ">=3.12"
+ dependencies = [
+-    "mcp>=1.7",
++    "mcp>=1.7,<2",  # mcp 2.x renamed FastMCP to MCPServer; src/ imports mcp.server.fastmcp
+     "x3d>=4.0.65.5,<5",
+     "lxml>=6.0",
+     "xmlschema>=4.3",
+diff --git a/src/tools/prompts.py b/src/tools/prompts.py
+index 11b3768..7755bb7 100644
+--- a/src/tools/prompts.py
++++ b/src/tools/prompts.py
+@@ -144,7 +144,8 @@ def register(mcp: FastMCP):
+             "forgiving than the XSD, but invalid X3D produces unpredictable browser "
+             "output. Fix any errors before converting.\n\n"
+             "2. **Convert** by calling `x3dom_page(content, title='...', "
+-            "width='800px', height='600px')`. The tool accepts either a full X3D "
++            "width='1280px', height='720px')` (the HD 16:9 default). The tool "
++            "accepts either a full X3D "
+             "document or a raw scene fragment, lowercases tag and attribute names "
+             "(X3DOM runs in the HTML5 parser which requires lowercase), and "
+             "embeds X3DOM 1.8.2 from CDN -- no install needed.\n\n"
+@@ -153,7 +154,7 @@ def register(mcp: FastMCP):
+             "Edge).\n\n"
+             "## Options\n"
+             "- `width` / `height` accept any CSS unit: `'100%'`, `'100vh'`, "
+-            "`'600px'`, etc.\n"
++            "`'720px'`, etc.\n"
+             "- `show_stats=True` shows the X3DOM frame-stats overlay (FPS, draw "
+             "calls, triangle count). Useful for performance audits.\n"
+             "- `show_log=True` shows the X3DOM log panel (parse warnings, "
+diff --git a/src/tools/render.py b/src/tools/render.py
+index dec0d93..ddb9dfb 100644
+--- a/src/tools/render.py
++++ b/src/tools/render.py
+@@ -29,6 +29,14 @@ _X3DOM_CDN_JS = "https://www.x3dom.org/download/1.8.2/x3dom.js"
+ # swiftshader (X3DOM only clears the background there).
+ _XITE_CDN_JS = "https://cdn.jsdelivr.net/npm/x_ite@latest/dist/x_ite.min.js"
+ 
++# Default render size for both X_ITE (render_image) and X3DOM (x3dom_page):
++# HD 720p, 16:9. Viewpoint fieldOfView spans the smaller dimension (height),
++# so callers reasoning about the view frustum need the same aspect ratio.
++_DEFAULT_WIDTH = 1280
++_DEFAULT_HEIGHT = 720
++_DEFAULT_CSS_WIDTH = f"{_DEFAULT_WIDTH}px"
++_DEFAULT_CSS_HEIGHT = f"{_DEFAULT_HEIGHT}px"
++
+ # Software-GL flags so headless Chromium renders WebGL without a real GPU.
+ _RENDER_ARGS = [
+     "--use-gl=angle", "--use-angle=swiftshader", "--enable-unsafe-swiftshader",
+@@ -232,8 +240,8 @@ def _extract_scene_content(x3d_content: str) -> str:
+ def _x3dom_page(
+     content: str,
+     title: str = "X3DOM Scene",
+-    width: str = "800px",
+-    height: str = "600px",
++    width: str = _DEFAULT_CSS_WIDTH,
++    height: str = _DEFAULT_CSS_HEIGHT,
+     show_stats: bool = False,
+     show_log: bool = False,
+ ) -> str:
+@@ -283,8 +291,8 @@ def _x3dom_page(
+ 
+ def _x3dom_starter(
+     title: str = "X3DOM Scene",
+-    width: str = "800px",
+-    height: str = "600px",
++    width: str = _DEFAULT_CSS_WIDTH,
++    height: str = _DEFAULT_CSS_HEIGHT,
+ ) -> str:
+     """Return a starter X3DOM HTML page with a small example scene."""
+     scene_content = (
+@@ -308,8 +316,8 @@ def register(mcp: FastMCP):
+     def x3dom_page(
+         content: str,
+         title: str = "X3DOM Scene",
+-        width: str = "800px",
+-        height: str = "600px",
++        width: str = _DEFAULT_CSS_WIDTH,
++        height: str = _DEFAULT_CSS_HEIGHT,
+         show_stats: bool = False,
+         show_log: bool = False,
+     ) -> str:
+@@ -323,8 +331,8 @@ def register(mcp: FastMCP):
+         Args:
+             content: X3D XML (full document or scene fragment).
+             title: Page title.
+-            width: x3d element width (e.g. "800px", "100%").
+-            height: x3d element height (e.g. "600px", "100vh").
++            width: x3d element width (default "1280px", HD 16:9; or e.g. "100%").
++            height: x3d element height (default "720px"; or e.g. "100vh").
+             show_stats: Show X3DOM frame stats overlay.
+             show_log: Show X3DOM log panel.
+         """
+@@ -334,8 +342,8 @@ def register(mcp: FastMCP):
+     async def render_image(
+         content: str = "",
+         path: str = "",
+-        width: int = 720,
+-        height: int = 540,
++        width: int = _DEFAULT_WIDTH,
++        height: int = _DEFAULT_HEIGHT,
+         wait_ms: int = 6000,
+         save_path: str = "",
+     ):
+@@ -358,8 +366,8 @@ def register(mcp: FastMCP):
+             content: X3D XML (full document or scene fragment), inline.
+             path: Path to an X3D file to render instead of inline content.
+                   Provide exactly one of `content` or `path`.
+-            width: Render width in pixels.
+-            height: Render height in pixels.
++            width: Render width in pixels (default 1280, HD 16:9).
++            height: Render height in pixels (default 720).
+             wait_ms: Milliseconds to wait for X_ITE to initialise and draw.
+             save_path: Optional path to also write the PNG to disk.
+         """
+@@ -387,7 +395,7 @@ def register(mcp: FastMCP):
+         return Image(data=png, format="png")
+ 
+     @mcp.tool()
+-    async def render_current_scene(width: int = 720, height: int = 540,
++    async def render_current_scene(width: int = _DEFAULT_WIDTH, height: int = _DEFAULT_HEIGHT,
+                                    wait_ms: int = 6000, save_path: str = ""):
+         """Render the current granular (in-memory) scene to a PNG you can inspect.
+ 
+@@ -395,8 +403,8 @@ def register(mcp: FastMCP):
+         add_child, then SEE the result before declaring done. Uses X_ITE.
+ 
+         Args:
+-            width: Render width in pixels.
+-            height: Render height in pixels.
++            width: Render width in pixels (default 1280, HD 16:9).
++            height: Render height in pixels (default 720).
+             wait_ms: Milliseconds to wait for X_ITE to initialise and draw.
+             save_path: Optional path to also write the PNG to disk.
+         """
+@@ -419,8 +427,8 @@ def register(mcp: FastMCP):
+     @mcp.tool()
+     def x3dom_starter(
+         title: str = "X3DOM Scene",
+-        width: str = "800px",
+-        height: str = "600px",
++        width: str = _DEFAULT_CSS_WIDTH,
++        height: str = _DEFAULT_CSS_HEIGHT,
+     ) -> str:
+         """Return a starter X3DOM HTML page with a simple example scene.
+ 
+diff --git a/tests/test_render.py b/tests/test_render.py
+index 18f2dda..b7db74e 100644
+--- a/tests/test_render.py
++++ b/tests/test_render.py
+@@ -48,6 +48,14 @@ def test_custom_dimensions():
+     assert "100vh" in html
+ 
+ 
++def test_default_dimensions_are_hd():
++    from tools.render import _DEFAULT_WIDTH, _DEFAULT_HEIGHT
++    assert (_DEFAULT_WIDTH, _DEFAULT_HEIGHT) == (1280, 720)
++    assert _DEFAULT_WIDTH * 9 == _DEFAULT_HEIGHT * 16
++    for html in (_x3dom_page("<box></box>"), _x3dom_starter()):
++        assert 'width="1280px" height="720px"' in html
++
++
+ def test_show_stats():
+     html = _x3dom_page("<box></box>", show_stats=True)
+     assert 'showStat="true"' in html
+-- 
+2.53.0.windows.4
+

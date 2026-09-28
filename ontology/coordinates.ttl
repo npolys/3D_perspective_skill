@@ -1,0 +1,8 @@
+@prefix :     <https://w3id.org/spatial-cognition#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:CoordinateFrame a owl:Class ;
+    rdfs:subClassOf :Concept ;
+    rdfs:label "Coordinate frame"@en ;
+    rdfs:comment "A local coordinate system set up by a transform-bearing node and its ancestors. X3D frames are right-handed, with +Y up and a default view along -Z; units are meters unless a unit statement says otherwise."@en .
