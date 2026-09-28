@@ -92,14 +92,23 @@ Install once with `pip install -e .[live]` in this folder, then `python -m playw
 - Cite the X3D node and field behind each number.
 - Say when units were inferred rather than declared.
 
-## Leave to the x3d MCP server
+## Relationship with x3d_mcp
 
-These are x3d_mcp's job, not this skill's:
+The skill is intentionally paired with the Web3D Consortium's [x3d_mcp](https://github.com/Web3DConsortium/x3d_mcp) server, and the boundary is explicit:
 
-- validation (`validate_x3d`, `validate_semantic`);
-- node definitions and defaults (`describe_node`);
-- ontology terms;
-- rendering;
-- document edits (`modify_x3d_node`, `move_x3d_node`).
+- **x3d_mcp owns standards, validation and document correctness.**
+  - `validate_x3d`, `validate_semantic`
+  - `describe_node` and default fields
+  - ontology and grounding terms
+  - document edits such as `modify_x3d_node`, `move_x3d_node`
+  - rendering when the hosted endpoint can provide it
+- **x3d_perspective owns runtime perspective and spatial reasoning.**
+  - the effective camera from the bound Viewpoint and NavigationInfo
+  - WALK/FLY/EXAMINE mode policy
+  - world units, up, gravity, support, collision and body scale
+  - projection, visibility, object framing and occlusion
+  - viewer-relative relations and translate-to-scene-edit actions
+
+This split matters in practice. x3d_mcp answers “what is the X3D object model and is the document valid?”; x3d_perspective answers “what does the user actually see and what should be changed from that view?” In other words, x3d_mcp provides the authoritative X3D document-level facts, while this skill performs viewpoint-aware spatial reasoning in the camera frame.
 
 The hosted server accepts documents only as `content` and has no `render_image` yet. `src/x3d_perspective/data/x3d_defaults.json` is a snapshot of its `describe_node` output.

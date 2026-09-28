@@ -89,7 +89,24 @@ with LiveView("room.x3d", renderer="x3dom") as live:
 2. Copy or link the folder into `~/.claude/skills/` as `x3d-perspective`, so the folder name matches the skill's `name`.
 3. Claude then loads [SKILL.md](SKILL.md) for questions about viewpoints, what is visible, scale, framing or object relations in `.x3d` scenes.
 
-The skill works alongside the Web3D Consortium's [x3d_mcp](https://github.com/Web3DConsortium/x3d_mcp) server, which handles X3D correctness: validation, node definitions and ontology terms. [.mcp.json](.mcp.json) connects Claude Code to its hosted endpoint. [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) explains the split.
+### Relationship with x3d_mcp
+
+This package and the Web3D Consortium's [x3d_mcp](https://github.com/Web3DConsortium/x3d_mcp) server play complementary roles. The skill boundary is intentionally strict:
+
+- `x3d_mcp` is the standards and document authority.
+  - Validates X3D and semantic correctness.
+  - Describes node definitions and default values.
+  - Exposes ontology terms and typed field metadata.
+  - Handles document edits and browser rendering when available.
+- `x3d_perspective` is the runtime perspective engine.
+  - Models the effective camera from the bound Viewpoint and NavigationInfo.
+  - Applies WALK/FLY/EXAMINE policy and support/gravity logic.
+  - Resolves projection, visibility, occlusion, and viewer-relative instructions.
+  - Converts language like “right of the sphere” into a scene change and an imagined post-change view.
+
+A practical rule is: use x3d_mcp for X3D correctness and schema-level facts; use x3d_perspective for spatial reasoning from a user’s actual perspective. Do not ask x3d_mcp to do the geometric projection work this package owns, and do not ask the perspective skill to reimplement validation or ontology lookup.
+
+Claude Code is connected to the hosted x3d_mcp endpoint through [.mcp.json](.mcp.json), which exposes `mcp__x3d__...` tools. [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) documents the split in detail.
 
 ## Verify your own scenes
 

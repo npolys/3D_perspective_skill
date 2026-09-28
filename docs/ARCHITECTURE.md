@@ -85,6 +85,45 @@ The LiveView defaults avoid launching Chromium with `--no-sandbox`. The LiveView
 
 Once the hosted endpoint has `render_image`, it can take X_ITE still images too. `live.py` stays for what needs a running browser: binding, changing fields, reading the camera, and X3DOM.
 
+## Static X3D reasoning vs runtime perspective
+
+A useful distinction in this project is between what can be understood from the authored X3D file alone and what requires runtime or image-based verification.
+
+From the X3D file and the initial authored Viewpoint and NavigationInfo, the system can determine a great deal about the scene:
+
+- the scene graph structure and parent-child transforms;
+- object placement, scale, rotations and local-to-world transforms;
+- units, world scale and geometry extents;
+- initial Viewpoint pose, fieldOfView, and authored camera intent;
+- NavigationInfo defaults such as avatarSize, speed, headlight, and declared navigation type;
+- approximate object-level relationships in world space and in the authored camera frame.
+
+This is enough for a strong static world model and for many geometric precomputations: bounding boxes, depth ordering, candidate frustum tests, and likely visibility. A scene loader can therefore reason about object layout and rough perspective before rendering.
+
+However, static authored state is not the same as the actual user perspective. Important facts are not reliably knowable from the file alone:
+
+- the currently bound Viewpoint may differ from the first authored node;
+- the currently bound NavigationInfo may switch the active camera policy;
+- WALK, FLY, EXAMINE and LOOKAT semantics differ materially in practice;
+- the browser may settle the eye on support or preserve the authored pose depending on renderer and runtime state;
+- rendering is affected by actual runtime binding, viewport size, occlusion, lighting, transparency, and user navigation;
+- the final image may differ from the authored world geometry because of renderer-specific behavior and dynamic scene effects.
+
+That is why the skill treats the perspective as runtime-aware rather than merely authored. The strongest model is: static X3D reasoning + runtime bound state + live verification. This gives a reliable picture of what the user sees, instead of a brittle static approximation.
+
+### How to strengthen static capability
+
+The static case can be made much stronger without relying on preview rendering or image-space analysis:
+
+1. Prefer the currently bound runtime Viewpoint and NavigationInfo whenever available.
+2. Model mode-specific camera policies explicitly: WALK, FLY, EXAMINE, LOOKAT, and authored non-grounded poses.
+3. Precompute world-space bounding volumes (AABB, OBB, sphere) for each object and use them for frustum and depth prioritization.
+4. Add a scene-level BVH for raycasts and occlusion-priority queries.
+5. Encode uncertainty: distinguish “definitely visible,” “likely visible,” and “ambiguous without runtime verification.”
+6. Pair static reasoning with runtime validation: predict the view, then check against live browser output when available.
+
+This is the core insight behind the project: a correct 3D perspective requires more than the authored geometry. The user’s actual view depends on runtime binding and navigation policy, and the robust AI agent must reason in that frame.
+
 ## The hosted endpoint
 
 Checked on 2026-09-28. The hosted build is older than GitHub `main`.
