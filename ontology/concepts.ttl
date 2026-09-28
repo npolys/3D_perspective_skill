@@ -1,0 +1,2 @@
+:Agent a :Concept .
+:Perspective a :Concept .

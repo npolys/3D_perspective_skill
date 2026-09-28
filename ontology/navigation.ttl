@@ -1,0 +1,2 @@
+:WalkNavigation a :NavigationMode .
+:FlyNavigation a :NavigationMode .
