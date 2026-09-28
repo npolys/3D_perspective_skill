@@ -7,6 +7,8 @@ description: Take the user's perspective on an X3D scene. Imagine, capture and s
 
 The perspective is the 2D view the X3D browser renders from the bound Viewpoint. Every rule here is grounded in `docs/X3D_MAPPINGS.md`, with X3D spec clauses cited there.
 
+The project also exposes a schema layer for downstream integration. The runtime engine produces a perspective; `x3d_perspective.schema` normalizes that into `PerspectiveModel`, validates it with `validate_perspective_model`, and exposes `SkillContract`, taxonomy, environment rules, decision traces, and an integration contract for authoring workflows.
+
 ## Commands
 
 Install once with `pip install -e .[live]` in this folder, then `python -m playwright install chromium`. Each command prints JSON, and each takes `--viewpoint DEF` and `--renderer x_ite|x3dom`. Pass the renderer the user is viewing in, because the two differ under WALK (below). `docs/CLI.md` documents every field.

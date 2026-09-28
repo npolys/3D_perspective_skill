@@ -47,9 +47,22 @@ Claude does the planning, so the old `planning.py`, `goal.schema.json` and `plan
 | The perspective, including the WALK eye settled on support, per renderer | x3d_perspective | `perspective.py` |
 | Imagine the view: pixel boxes, depth, framing, occlusion, reason codes | x3d_perspective | `view.py` |
 | Object relations; resolving viewer-relative instructions | x3d_perspective | `relations.py` |
+| Formal schema contract and validation layer | x3d_perspective | `schema.py` |
 | Drive the live view in X_ITE or X3DOM | x3d_perspective | `live.py` |
 | See a capture: where each coloured object landed | x3d_perspective | `imaging.py` |
 | Collision paths and passable gaps | x3d_perspective | Phase 4 (support under the eye and under moved objects is already in `perspective.py` and `relations.py`) |
+
+## Formal schema boundary
+
+The runtime engine and the schema contract are intentionally separate but connected layers.
+
+- The runtime layers (`frames.py`, `perspective.py`, `view.py`, `relations.py`, `x3d_loader.py`) compute the effective camera, body motion, visible objects, and spatial relations from an X3D scene.
+- The schema layer (`schema.py`) turns that runtime output into stable, validated objects meant for downstream authoring, planning, or agent orchestration.
+- `build_perspective_model(...)` creates the normalized `PerspectiveModel`.
+- `validate_perspective_model(model)` checks required fields and consistency constraints.
+- `build_skill_contract()`, `build_taxonomy_contract()`, `build_environment_rule_table()`, `build_observer_profile_contract()`, `build_decision_trace()`, and `build_integration_contract()` make the contract explicit and machine-readably inspectable.
+
+This is the API boundary used by external integrations that want a formal perspective contract without depending on the low-level runtime details of the engine.
 
 ## Capturing and changing the live view
 

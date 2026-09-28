@@ -87,6 +87,42 @@ plan["set_field"]                                      # {"def": "Table", "field
 
 Use them to imagine a change before making it.
 
+## Schema-shaped perspective outputs
+
+The package also exports a schema layer for downstream consumers that do not want to reason directly from runtime objects.
+
+```python
+import x3d_perspective as xp
+
+scene = xp.load("room.x3d")
+model = xp.build_perspective_model(scene, viewpoint="Entry", renderer="spec")
+errors = xp.validate_perspective_model(model)
+
+if errors:
+    raise ValueError(errors)
+
+skill = xp.build_skill_contract()
+taxonomy = xp.build_taxonomy_contract()
+trace = xp.build_decision_trace(
+    model_type=model.perspective_type,
+    navigation_mode=model.navigation_mode,
+    scene_context="museum",
+)
+integ = xp.build_integration_contract()
+```
+
+The schema API is intentionally small and explicit:
+
+- `build_perspective_model(...)` returns a `PerspectiveModel` with the perspective type, coordinate frame, scale class, navigation mode, camera profile, semantic inputs, viewpoints, affordances, and accessibility features.
+- `validate_perspective_model(model)` checks the required contract fields and taxonomy consistency rules.
+- `build_skill_contract()` returns the machine-readable `SkillContract` object.
+- `build_taxonomy_contract()` exposes the perspective taxonomy, viewpoint taxonomy, and observer profile.
+- `build_environment_rule_table()` maps scene context to navigation and camera choices.
+- `build_decision_trace(...)` produces an explainability trace for downstream rendering or authoring.
+- `build_integration_contract()` describes the pipeline from ontology/context inference to downstream authoring.
+
+These functions are exported at the package top level via `x3d_perspective` and are covered by `tests/test_schema.py`.
+
 ## Drive the live view
 
 ```python

@@ -3,6 +3,10 @@
         "/^pytest tests/test_schema\\.py -q$/": {
             "approve": true,
             "matchCommandLine": true
+        },
+        "/^c:/git/3D_perspective_skill/\\.venv/Scripts/python\\.exe -m pytest tests/test_schema\\.py -q$/": {
+            "approve": true,
+            "matchCommandLine": true
         }
     }
 }

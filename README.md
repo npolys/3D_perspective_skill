@@ -23,6 +23,40 @@ It is both a Python package with a command line, and an [Agent Skill](SKILL.md) 
 - **Relate and act from the viewer's position.** `right = level(view direction) × up`, so "right of the sphere" means +X from one Viewpoint and −Z from another. `place` returns the `translation` to set, in the object's parent frame.
 - **Verify any scene.** `x3d-perspective verify` runs every Viewpoint in both renderers and exits with status 1 if the predictions and the renderers disagree.
 
+## Schema contract and validation layer
+
+The runtime engine is now paired with a formal schema layer in `x3d_perspective.schema`. It converts the runtime perspective reasoning into a machine-readable contract that can be validated and consumed by downstream authoring, scene planning, or agent workflows.
+
+```python
+import x3d_perspective as xp
+
+scene = xp.load("room.x3d")
+model = xp.build_perspective_model(scene, viewpoint="Entry", renderer="spec")
+errors = xp.validate_perspective_model(model)
+
+assert not errors
+contract = xp.build_skill_contract()
+taxonomy = xp.build_taxonomy_contract()
+trace = xp.build_decision_trace(
+    model_type=model.perspective_type,
+    navigation_mode=model.navigation_mode,
+    scene_context="museum",
+)
+```
+
+The exported schema API includes:
+
+- `PerspectiveModel` and `SkillContract`
+- `build_perspective_model(scene, viewpoint=None, renderer="spec")`
+- `validate_perspective_model(model)`
+- `build_taxonomy_contract()`
+- `build_environment_rule_table()`
+- `build_observer_profile_contract()`
+- `build_decision_trace(...)`
+- `build_integration_contract()`
+
+This is the contract boundary between the geometric runtime engine and downstream authoring or orchestration.
+
 ## Install
 
 Requires Python 3.10 or later.
@@ -135,10 +169,11 @@ ruff check src tests scripts
 ```
 SKILL.md                     the Agent Skill: rules and workflow for Claude
 src/x3d_perspective/         the Python package and `x3d-perspective` command
+  schema.py                  formal perspective schema, validation, taxonomy, and integration contracts
   data/x3d_defaults.json     X3D field definitions and defaults, from x3d_mcp's describe_node (X3DUOM 4.1)
 ontology/                    the agent's concepts in OWL, linked to X3D Ontology 4.1 terms (x3d_grounding.ttl)
 examples/room_inspection/    the test room and an example script
-tests/                       offline tests; live tests marked `live`
+tests/                       offline tests, including `test_schema.py` for the formal contract layer
 scripts/snapshot_defaults.py refreshes data/x3d_defaults.json from x3d_mcp
 upstream/x3d_mcp/            a proposed patch for x3d_mcp (HD default render size; mcp<2 pin)
 docs/                        documentation

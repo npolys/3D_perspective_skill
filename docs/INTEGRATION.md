@@ -56,6 +56,34 @@ Notes:
 - All distances are in meters after the scene's `unit` statement.
 - Field defaults come from the X3DUOM snapshot included in the package — see `src/x3d_perspective/data/x3d_defaults.json`.
 
+## Schema contract outputs for downstream consumers
+
+The repo now exposes a schema-shaped output layer for consumers that need a normalized perspective contract rather than the raw runtime objects.
+
+```python
+import x3d_perspective as xp
+
+scene = xp.load("room.x3d")
+model = xp.build_perspective_model(scene, viewpoint="Entry", renderer="spec")
+assert xp.validate_perspective_model(model) == []
+
+skill = xp.build_skill_contract()
+trace = xp.build_decision_trace(
+    model_type=model.perspective_type,
+    navigation_mode=model.navigation_mode,
+    scene_context="museum",
+)
+```
+
+This is intended for agent orchestration, scene authoring, or external integrations that want a consistent, validated perspective artifact without re-implementing the runtime engine. The formal contract covers:
+
+- `PerspectiveModel` (type, frame, scale, navigation, camera, observer properties, semantic inputs, affordances, accessibility)
+- `SkillContract` (dependencies, outputs, principles, validation rules, base contract)
+- `build_taxonomy_contract()`
+- `build_environment_rule_table()`
+- `build_observer_profile_contract()`
+- `build_integration_contract()`
+
 ## Use from the command line
 
 The `x3d-perspective` command exposes the most common workflows and prints JSON on stdout. Example:
