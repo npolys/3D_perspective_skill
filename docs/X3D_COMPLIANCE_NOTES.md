@@ -1,0 +1,1 @@
+Normative vs derived semantics separation. NavigationInfo, Viewpoint, VisibilitySensor, Collision audited.

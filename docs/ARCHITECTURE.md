@@ -1,0 +1,1 @@
+Concept Layer -> Mapping Contract -> X3D Layer. Normative fields preserved; derived inferences separated.

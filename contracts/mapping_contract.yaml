@@ -1,0 +1,54 @@
+
+version: 5.0
+mapping_contract:
+  normative:
+    NavigationInfo:
+      type: {concept: NavigationMode, roundtrip: true}
+      avatarSize:
+        collisionDistance: {source: avatarSize[0], roundtrip: true}
+        eyeHeight: {source: avatarSize[1], roundtrip: true}
+        stepHeight: {source: avatarSize[2], roundtrip: true}
+      speed: {concept: PreferredTravelRate, roundtrip: true}
+      headlight: {concept: AttachedDirectionalLightEnabled, roundtrip: true}
+      visibilityLimit: {concept: VisibilityLimit, roundtrip: true}
+      transitionType: {concept: TransitionStrategy, roundtrip: true}
+      transitionTime: {concept: TransitionDuration, roundtrip: true}
+      set_bind: {concept: BindingRequest, roundtrip: true}
+      isBound: {concept: BindingState, roundtrip: true}
+      bindTime: {concept: BindingTimestamp, roundtrip: true}
+    Viewpoint:
+      position: {concept: ObserverLocation, roundtrip: true}
+      orientation: {concept: ObserverOrientation, roundtrip: true}
+      centerOfRotation: {concept: AttentionPivot, roundtrip: true}
+      fieldOfView: {concept: PerceptualAngle, roundtrip: true}
+      jump: {concept: JumpBehavior, roundtrip: true}
+      retainUserOffsets: {concept: RetainUserOffsets, roundtrip: true}
+      description: {concept: PerspectiveDescription, roundtrip: true}
+    VisibilitySensor:
+      center: {concept: ObservationRegionCenter, roundtrip: true}
+      size: {concept: ObservationRegionExtent, roundtrip: true}
+      enabled: {concept: SensorEnabled, roundtrip: true}
+      isActive: {concept: SensorActive, roundtrip: true}
+      enterTime: {concept: EnterTimestamp, roundtrip: true}
+      exitTime: {concept: ExitTimestamp, roundtrip: true}
+    Collision:
+      enabled: {concept: CollisionEnabled, roundtrip: true}
+      proxy: {concept: CollisionProxy, roundtrip: true}
+      isActive: {concept: CollisionActive, roundtrip: true}
+      collideTime: {concept: CollisionTimestamp, roundtrip: true}
+  derived:
+    NearPerceptionLimit:
+      recommended_rule: collisionDistance / 2
+      roundtrip: false
+    PerceptualVolume:
+      roundtrip: false
+    ObservableSet:
+      roundtrip: false
+    ReachableSet:
+      roundtrip: false
+    GroundedPerspective:
+      roundtrip: false
+    ObjectCenteredPerspective:
+      roundtrip: false
+    TargetCenteredPerspective:
+      roundtrip: false
