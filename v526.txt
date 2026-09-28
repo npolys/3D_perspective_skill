@@ -1,0 +1,449 @@
+V5 → V6 Migration Checklist
+
+Use this checklist as the official migration plan for evolving 3D_perspective_skill_v5_x3d_compliant into 3D_spatial_cognition_skill_v6.
+
+Phase 1: Repository Restructuring
+Create New Top-Level Directories
+contracts/
+migrations/
+
+ontology/
+shacl/
+schemas/
+
+examples/
+tests/
+
+src/spatial_cognition/
+
+Create New Documentation
+docs/ARCHITECTURE.md
+docs/X3D_COMPLIANCE.md
+docs/CONCEPT_MODEL.md
+docs/MAPPING_GUIDE.md
+docs/AGENT_API.md
+
+
+Status:
+
+□ Complete
+
+Phase 2: Concept Ontology Refactoring
+Create Core Concept Modules
+
+Create:
+
+ontology/concepts.ttl
+ontology/perception.ttl
+ontology/embodiment.ttl
+ontology/navigation.ttl
+ontology/visibility.ttl
+ontology/collision.ttl
+ontology/planning.ttl
+
+Required Core Classes
+Agent
+Environment
+Object
+Region
+Space
+
+Perspective
+NavigationMode
+ObservationRegion
+OccupancyConstraint
+
+EmbodiedAgent
+
+Task
+Goal
+Action
+Plan
+
+
+Status:
+
+□ Complete
+
+Phase 3: Separate Normative vs Derived Semantics
+Create Two Explicit Layers
+Normative
+Direct X3D mappings
+Round-trippable
+
+Derived
+Reasoning outputs
+Not exported directly to X3D
+
+
+Status:
+
+□ Complete
+
+Phase 4: NavigationInfo Audit
+Verify All Normative Fields
+type
+avatarSize
+speed
+headlight
+visibilityLimit
+transitionType
+transitionTime
+set_bind
+isBound
+bindTime
+
+
+Status:
+
+□ Complete
+
+Rename Embodiment Concepts
+Replace
+collisionRadius
+
+With
+collisionDistance
+
+
+Mapping:
+
+avatarSize[0]
+
+
+Status:
+
+□ Complete
+
+Verify Avatar Mapping
+avatarSize[0] → collisionDistance
+
+avatarSize[1] → eyeHeight
+
+avatarSize[2] → stepHeight
+
+
+Status:
+
+□ Complete
+
+Phase 5: Viewpoint Audit
+Verify Viewpoint Coverage
+position
+orientation
+centerOfRotation
+fieldOfView
+jump
+retainUserOffsets
+description
+
+
+Status:
+
+□ Complete
+
+Rename FOV Concepts
+Replace
+FieldOfView
+
+With
+PerceptualAngle
+
+
+Status:
+
+□ Complete
+
+Reclassify Near Plane
+Replace
+NearPlane
+
+With
+NearPerceptionLimit
+
+
+Classification:
+
+Derived
+
+
+Status:
+
+□ Complete
+
+Phase 6: VisibilitySensor Upgrade
+Verify Coverage
+center
+size
+enabled
+isActive
+enterTime
+exitTime
+
+
+Status:
+
+□ Complete
+
+Create Visibility Concepts
+ObservationRegion
+
+VisibilityState
+
+VisibilityEvent
+
+
+Status:
+
+□ Complete
+
+Phase 7: Collision Upgrade
+Verify Coverage
+enabled
+proxy
+isActive
+collideTime
+
+
+Status:
+
+□ Complete
+
+Create Collision Concepts
+OccupancyConstraint
+
+CollisionProxy
+
+CollisionState
+
+TraversableSpace
+
+
+Status:
+
+□ Complete
+
+Phase 8: Mapping Contract Layer
+Create Contract Files
+contracts/mapping_contract.yaml
+
+contracts/navigationinfo_mapping.yaml
+
+contracts/viewpoint_mapping.yaml
+
+contracts/visibilitysensor_mapping.yaml
+
+contracts/collision_mapping.yaml
+
+contracts/roundtrip_requirements.yaml
+
+
+Status:
+
+□ Complete
+
+Verify Round-Trip Coverage
+
+Every normative field must support:
+
+X3D
+ ↓
+Concepts
+ ↓
+X3D
+
+
+without semantic loss.
+
+Status:
+
+□ Complete
+
+Phase 9: Derived Reasoning Layer
+Create Inference Modules
+src/spatial_cognition/inference/
+
+
+Required:
+
+perceptual_inference.py
+
+navigation_inference.py
+
+reachability_inference.py
+
+planning_inference.py
+
+
+Status:
+
+□ Complete
+
+Create Derived Concepts
+PerceptualVolume
+
+NearPerceptionLimit
+
+ObservableSet
+
+ReachableSet
+
+TraversalCost
+
+GroundedPerspective
+
+ObjectCenteredPerspective
+
+TargetCenteredPerspective
+
+
+Status:
+
+□ Complete
+
+Phase 10: Agent API
+Required Public APIs
+load_x3d()
+
+export_x3d()
+
+can_see()
+
+is_reachable()
+
+visible_objects()
+
+reachable_spaces()
+
+compute_best_viewpoint()
+
+compute_best_navigation_type()
+
+plan_path()
+
+generate_plan()
+
+
+Status:
+
+□ Complete
+
+Phase 11: Validation
+SHACL
+
+Create:
+
+concepts.shacl.ttl
+perception.shacl.ttl
+navigation.shacl.ttl
+visibility.shacl.ttl
+collision.shacl.ttl
+x3d_mapping.shacl.ttl
+
+
+Status:
+
+□ Complete
+
+JSON Schemas
+
+Create:
+
+world_state.schema.json
+
+perspective.schema.json
+
+navigation.schema.json
+
+visibility.schema.json
+
+collision.schema.json
+
+planning.schema.json
+
+
+Status:
+
+□ Complete
+
+Phase 12: Testing
+Mapping Tests
+test_mappings.py
+
+test_roundtrip.py
+
+
+Status:
+
+□ Complete
+
+Semantic Tests
+test_navigation.py
+
+test_viewpoint.py
+
+test_visibility.py
+
+test_collision.py
+
+test_inferences.py
+
+
+Status:
+
+□ Complete
+
+Phase 13: Migration Verification
+
+Verify:
+
+□ All X3D normative fields preserved
+
+□ No derived concepts masquerade as X3D fields
+
+□ NavigationInfo semantics retained
+
+□ Viewpoint semantics retained
+
+□ VisibilitySensor semantics retained
+
+□ Collision semantics retained
+
+□ Bindable-node semantics retained
+
+□ Round-trip mappings pass
+
+□ SHACL validations pass
+
+□ Schema validations pass
+
+□ Examples run successfully
+
+□ Tests pass
+
+Final Acceptance Criteria
+
+Migration is complete when:
+
+✓ Concept-first architecture established
+
+✓ Normative-vs-derived separation implemented
+
+✓ Full NavigationInfo semantic coverage
+
+✓ Full Viewpoint semantic coverage
+
+✓ Full VisibilitySensor semantic coverage
+
+✓ Full Collision semantic coverage
+
+✓ Mapping contract implemented
+
+✓ Round-trip validation implemented
+
+✓ Agent reasoning layer implemented
+
+✓ X3D compatibility preserved
+
+
+At that point, the project has evolved from an X3D perspective-centric skill into a Spatial Cognition and World Modeling Framework with a lossless X3D mapping layer and a reusable agent-oriented concept model.
