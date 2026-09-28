@@ -1,7 +1,8 @@
 """Snapshot per-node X3D field definitions from the x3d_mcp endpoint.
 
 The analyzer runs offline, so it reads field types and defaults from
-contracts/x3d_defaults.json instead of calling describe_node at run time.
+src/x3d_perspective/data/x3d_defaults.json (package data) instead of calling
+describe_node at run time.
 This script refreshes that file from x3d_mcp's describe_node tool, which
 serves the X3D Unified Object Model (see docs/ARCHITECTURE.md, "Field defaults").
 
@@ -18,7 +19,7 @@ import urllib.request
 from pathlib import Path
 
 DEFAULT_URL = "https://x3d-mcp.onrender.com/mcp"
-OUT_PATH = Path(__file__).resolve().parent.parent / "contracts" / "x3d_defaults.json"
+OUT_PATH = Path(__file__).resolve().parent.parent / "src" / "x3d_perspective" / "data" / "x3d_defaults.json"
 
 # Node types the analyzer reads. Keep in sync with docs/ARCHITECTURE.md.
 NODE_TYPES = [
@@ -91,7 +92,7 @@ class McpHttpClient:
         result = self.request("initialize", {
             "protocolVersion": "2025-06-18",
             "capabilities": {},
-            "clientInfo": {"name": "perspective-agent-snapshot", "version": "0.1"},
+            "clientInfo": {"name": "x3d-perspective-snapshot", "version": "0.1"},
         })
         self.protocol_version = result.get("protocolVersion")
         self._post({"jsonrpc": "2.0", "method": "notifications/initialized"})

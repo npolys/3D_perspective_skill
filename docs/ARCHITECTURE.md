@@ -20,7 +20,7 @@ Claude plans and orchestrates, and calls two tool sources:
   - ontology terms;
   - rendering;
   - document edits by DEF name.
-- **`perspective_agent`** (this repo) owns the perspective:
+- **`x3d_perspective`** (this repo) owns the perspective:
   - world transforms, up and gravity, units and scale;
   - the viewer's body and its coupling with the Viewpoint;
   - the projection to the 2D view: framing, relations and visibility;
@@ -40,16 +40,16 @@ Claude does the planning, so the old `planning.py`, `goal.schema.json` and `plan
 | Validate a scene (XSD and DTD 4.1, semantic checks) | x3d_mcp | `validate_x3d(content)`, `validate_semantic(content)` |
 | Fix containerField errors | x3d_mcp | `modify_x3d_node`; `autofix_x3d` once redeployed |
 | Field names, types and per-node defaults | x3d_mcp | `describe_node(node_type)` |
-| Capture the rendered view | perspective_agent, and x3d_mcp | `x3d-perspective capture` (X_ITE or X3DOM, live); x3d_mcp `render_image` (X_ITE) once redeployed |
+| Capture the rendered view | x3d_perspective, and x3d_mcp | `x3d-perspective capture` (X_ITE or X3DOM, live); x3d_mcp `render_image` (X_ITE) once redeployed |
 | Change the document by DEF | x3d_mcp | `modify_x3d_node`, `move_x3d_node`, `remove_x3d_node` |
-| Load the scene: world matrices, units, Inline files, triangles | perspective_agent | `x3d_loader.py`, `geometry.py` |
-| Up, gravity, units, meter scale | perspective_agent | `frames.py` |
-| The perspective, including the WALK eye settled on support, per renderer | perspective_agent | `perspective.py` |
-| Imagine the view: pixel boxes, depth, framing, occlusion, reason codes | perspective_agent | `view.py` |
-| Object relations; resolving viewer-relative instructions | perspective_agent | `relations.py` |
-| Drive the live view in X_ITE or X3DOM | perspective_agent | `live.py` |
-| See a capture: where each coloured object landed | perspective_agent | `imaging.py` |
-| Collision paths and passable gaps | perspective_agent | Phase 4 (support under the eye and under moved objects is already in `perspective.py` and `relations.py`) |
+| Load the scene: world matrices, units, Inline files, triangles | x3d_perspective | `x3d_loader.py`, `geometry.py` |
+| Up, gravity, units, meter scale | x3d_perspective | `frames.py` |
+| The perspective, including the WALK eye settled on support, per renderer | x3d_perspective | `perspective.py` |
+| Imagine the view: pixel boxes, depth, framing, occlusion, reason codes | x3d_perspective | `view.py` |
+| Object relations; resolving viewer-relative instructions | x3d_perspective | `relations.py` |
+| Drive the live view in X_ITE or X3DOM | x3d_perspective | `live.py` |
+| See a capture: where each coloured object landed | x3d_perspective | `imaging.py` |
+| Collision paths and passable gaps | x3d_perspective | Phase 4 (support under the eye and under moved objects is already in `perspective.py` and `relations.py`) |
 
 ## Capturing and changing the live view
 
@@ -73,6 +73,8 @@ Verified in both renderers by `tests/test_live.py`, from the four Viewpoints of 
 | Capture | canvas screenshot | canvas screenshot |
 
 **Launch settings.** Chrome's full headless mode (`channel="chromium"`) with SwiftShader software GL, the same flags as x3d_mcp's renderer and the x3dom-spikes. No GPU is needed. X3DOM draws geometry in this mode; it doesn't in the stripped-down headless shell.
+
+The LiveView defaults avoid launching Chromium with `--no-sandbox`. The LiveView API and the CLI expose a `--no-sandbox` / `allow_no_sandbox` option for environments that require it (some CI runners). This option is unsafe on multi-tenant or sensitive hosts — prefer running captures inside a container or VM. Also consider hosting renderer scripts locally instead of pulling from a CDN when capturing untrusted scenes.
 
 **Pitfalls:**
 - **A bind takes effect on the next frame.** Wait before reading the camera. `LiveView.bind` waits 2.5 s: the default 1 s transition, then settling.
@@ -146,7 +148,7 @@ A wrong containerField passes XSD validation, but the browser silently drops the
 
 `describe_node` serves per-node definitions from X3DUOM 4.1.
 
-- [`scripts/snapshot_defaults.py`](../scripts/snapshot_defaults.py) keeps a local snapshot in [`contracts/x3d_defaults.json`](../contracts/x3d_defaults.json): 37 nodes and 670 fields from the hosted endpoint, taken on 2026-09-28.
+- [`scripts/snapshot_defaults.py`](../scripts/snapshot_defaults.py) keeps a local snapshot, shipped as package data in [`src/x3d_perspective/data/x3d_defaults.json`](../src/x3d_perspective/data/x3d_defaults.json): 43 nodes and 781 fields from the hosted endpoint, taken on 2026-09-28.
 - `tests/test_x3d_grounding.py` checks every grounded node, field and default in `ontology/x3d_grounding.ttl` against it.
 
 ## Ontology version
@@ -157,8 +159,30 @@ Checking that `x3d:` terms exist is x3d_mcp's job, through `describe_ontology_te
 
 ## Packaging
 
+## BVH hot-path integration and tuning
+
+The geometry module implements an optional Bounding Volume Hierarchy (BVH) builder and BVH-aware raycast to accelerate occlusion and ray queries on large scenes. The repository ships conservative defaults tuned from the benchmark harness in examples/benchmarks.
+
+Defaults and environment overrides
+
+- Default method: median-split. (geometry.BVH_DEFAULT_METHOD)
+- Default leaf size: 24 triangles. (geometry.BVH_DEFAULT_LEAF)
+- Hot-path threshold: view uses a BVH when occluder triangle count >= 2000.
+
+These values are conservative: median-split with a modest leaf size gives reliable amortized speedups for clustered geometry and directional/coherent ray workloads while avoiding excessive build costs for uniform terrain scenes. If tuning is required for a deployment, the following environment variables may be used to change builder defaults before running:
+
+- X3D_PERSPECTIVE_BVH_METHOD = "median" | "sah"
+- X3D_PERSPECTIVE_BVH_LEAF = integer leaf size (e.g., 24, 48)
+
+The Scene.bvh accessor reads these environment variables when building the cached BVH tree. The hot-path threshold is a conservative default to avoid build-amortization in small scenes; change it in code if a different policy is preferred.
+
+The BVH is used transparently for visibility queries when available. If the BVH is absent or explicitly unsuitable, the raycast falls back to the brute-force triangle test. Future releases may expose a CLI flag or environment variable to change the threshold and enable async/lazy BVH construction to avoid first-frame stalls.
+
+
+## Packaging
+
 ```
-src/perspective_agent/   Python library, no MCP dependency (numpy, lxml; Playwright and Pillow for [live])
+src/x3d_perspective/   Python library, no MCP dependency (numpy, lxml; Playwright and Pillow for [live])
   x3d_loader.py          .x3d to world-space records: Viewpoints, NavigationInfo, shapes as triangles, units
   geometry.py            triangles for X3D geometry nodes; ray casting
   mathx.py               SFRotation, Transform matrices

@@ -10,21 +10,16 @@ import pytest
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from snapshot_defaults import NODE_TYPES  # noqa: E402
+from snapshot_defaults import NODE_TYPES, OUT_PATH  # noqa: E402
 
-DEFAULTS = json.loads((ROOT / "contracts" / "x3d_defaults.json").read_text(encoding="utf-8"))
-TURTLE_FILES = sorted((ROOT / "ontology").glob("*.ttl")) + [ROOT / "shacl" / "worldmodel.shacl.ttl"]
+DEFAULTS = json.loads(OUT_PATH.read_text(encoding="utf-8"))
+TURTLE_FILES = sorted((ROOT / "ontology").glob("*.ttl"))
 
 
 @pytest.mark.parametrize("path", TURTLE_FILES, ids=lambda p: p.name)
 def test_turtle_parses(path):
     rdflib = pytest.importorskip("rdflib")
     rdflib.Graph().parse(path, format="turtle")
-
-
-@pytest.mark.parametrize("path", sorted((ROOT / "schemas").glob("*.json")), ids=lambda p: p.name)
-def test_json_schema_loads(path):
-    assert isinstance(json.loads(path.read_text(encoding="utf-8")), dict)
 
 
 def test_skill_header():
@@ -42,6 +37,11 @@ def test_mcp_config_points_at_x3d_endpoint():
     assert config["mcpServers"]["x3d"]["url"].endswith("/mcp")
 
 
+def test_defaults_snapshot_is_the_package_data():
+    from x3d_perspective import x3d_loader
+    assert x3d_loader.default("Viewpoint", "position") == DEFAULTS["nodes"]["Viewpoint"]["fields"]["position"]["default"]
+
+
 def test_defaults_snapshot_covers_analyzer_nodes():
     assert list(DEFAULTS["nodes"]) == NODE_TYPES
 
@@ -57,6 +57,8 @@ def test_defaults_snapshot_covers_analyzer_nodes():
     ("NavigationInfo", "speed", "1"),
     ("NavigationInfo", "visibilityLimit", "0"),
     ("NavigationInfo", "type", '"EXAMINE" "ANY"'),
+    ("NavigationInfo", "headlight", "true"),
+    ("Background", "skyColor", "0 0 0"),
     ("Collision", "enabled", "true"),
     ("Transform", "visible", "true"),
     ("Switch", "whichChoice", "-1"),

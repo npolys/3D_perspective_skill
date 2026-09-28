@@ -4,19 +4,48 @@ Implements docs/X3D_MAPPINGS.md §2 (projection) and §7 (visibility reason code
 """
 
 import math
+import os
 
 import numpy as np
 
 from . import geometry
 
+# Hot-path BVH control: read from runtime config module so callers can set it programmatically
+from . import config
+_bvh_cfg = config.get_bvh_config()
+BVH_HOT_ENABLED = _bvh_cfg.get("enabled", True)
+BVH_HOT_THRESHOLD = _bvh_cfg.get("threshold", 2000)
+
 DEFAULT_SIZE = (1280, 720)
-OPAQUE_BELOW = 0.5          # transparency under this blocks the line of sight
+OPAQUE_BELOW = 0.5          # transparency at or below this blocks the line of sight
+TRANSPARENT_ABOVE = 0.85     # stronger transparency: visual but not physical occlusion
 MAX_SAMPLES = 300
 
 
 def focal_px(p, width, height):
     """Focal length in pixels: fieldOfView spans the smaller side of the view (23.3.1)."""
     return (min(width, height) / 2) / math.tan(p.field_of_view / 2)
+
+
+def rect_fov(p, width, height):
+    """Horizontal and vertical field-of-view angles for the current display aspect ratio.
+
+    For a rectangular projection the X3D spec requires:
+        display width / display height = tan(FOVhorizontal / 2) / tan(FOVvertical / 2)
+    A single Viewpoint.fieldOfView defines the smaller dimension; the other axis is derived from
+    the aspect ratio.
+    """
+    if p.kind == "OrthoViewpoint":
+        raise ValueError("OrthoViewpoint uses extents, not a perspective fieldOfView")
+    full = float(p.field_of_view)
+    ratio = width / height
+    if width >= height:
+        vertical = full
+        horizontal = 2 * math.atan(ratio * math.tan(full / 2))
+    else:
+        horizontal = full
+        vertical = 2 * math.atan((1 / ratio) * math.tan(full / 2))
+    return horizontal, vertical
 
 
 def to_camera(p, points):
@@ -119,29 +148,33 @@ def _third(u, width):
 def see(scene, p, size=DEFAULT_SIZE):
     """The imagined view: one entry per object, with pixel box, depth, framing and a reason code."""
     width, height = size
+    p.viewport_size = (width, height)
     result = {"perspective": p.summary(), "size": [width, height], "objects": []}
     if p.kind == "Viewpoint":
         f = focal_px(p, width, height)
+        h_fov, v_fov = rect_fov(p, width, height)
         result["focal_px"] = round(f, 2)
-        result["horizontal_fov_deg"] = round(math.degrees(2 * math.atan(width / 2 / f)), 2)
+        result["horizontal_fov_deg"] = round(math.degrees(h_fov), 2)
+        result["vertical_fov_deg"] = round(math.degrees(v_fov), 2)
     if p.falls:
         result["background_only"] = True
         result["reason"] = "VIEWER_FALLS: WALK gravity with no support under the Viewpoint"
         return result
 
-    occluders = [s for s in scene.shapes if s.rendered and len(s.triangles) and s.transparency < OPAQUE_BELOW]
+    occluders = [s for s in scene.shapes if s.rendered and len(s.triangles)
+                 and s.transparency <= OPAQUE_BELOW and s.transparency < TRANSPARENT_ABOVE]
     occ_tris = np.concatenate([s.triangles for s in occluders]) if occluders else np.zeros((0, 3, 3))
     occ_owner = np.array([s.object for s in occluders for _ in range(len(s.triangles))])
     occ_solid = np.concatenate([np.full(len(s.triangles), s.solid) for s in occluders]) if occluders else np.zeros(0, bool)
 
     for name, object_shapes in scene.objects().items():
         result["objects"].append(_see_object(p, name, object_shapes, width, height, scene.fog_range,
-                                             occ_tris, occ_owner, occ_solid))
+                                             occ_tris, occ_owner, occ_solid, scene))
     result["background_only"] = not any(o.get("status") == "VISIBLE" for o in result["objects"])
     return result
 
 
-def _see_object(p, name, object_shapes, width, height, fog_range, occ_tris, occ_owner, occ_solid):
+def _see_object(p, name, object_shapes, width, height, fog_range, occ_tris, occ_owner, occ_solid, scene, occ_tree=None):
     entry = {"name": name, "geometry": sorted({s.geometry for s in object_shapes})}
     drawn = [s for s in object_shapes if s.rendered and len(s.triangles)]
     if not drawn:
@@ -172,19 +205,24 @@ def _see_object(p, name, object_shapes, width, height, fog_range, occ_tris, occ_
         cu, cv = _pixels(p, center_cam, width, height)[0]
         entry["center_px"] = [round(float(cu), 1), round(float(cv), 1)]
     if len(in_frame) == 0:
+        # extent can be None in degenerate cases (no front triangles produced an extent).
+        # Defensively handle that case rather than raising when unpacking.
+        if extent is None:
+            entry["status"] = "OUT_OF_FRUSTUM"
+            entry["where"] = "not in front of the eye"
+            return entry
         u0, v0, u1, v1 = extent
         entry["status"] = "OUT_OF_FRUSTUM"
         entry["where"] = ("left of" if u1 < 0 else "right of" if u0 > width else "above" if v1 < 0 else "below") + " the frame"
         return entry
     box = [*in_frame.min(axis=0), *in_frame.max(axis=0)]
     entry["pixel_box"] = [round(float(x), 1) + 0.0 for x in box]      # + 0.0 turns -0.0 into 0.0
-    entry["cut_off"] = [side for side, off in zip(("left", "top", "right", "bottom"),
-                                                  (extent[0] < -0.5, extent[1] < -0.5, extent[2] > width + 0.5,
-                                                   extent[3] > height + 0.5)) if off]
+    beyond = (extent[0] < -0.5, extent[1] < -0.5, extent[2] > width + 0.5, extent[3] > height + 0.5)
+    entry["cut_off"] = [side for side, off in zip(("left", "top", "right", "bottom"), beyond, strict=True) if off]
     entry["size_px"] = [round(float(box[2] - box[0]), 1), round(float(box[3] - box[1]), 1)]
     entry["frame_height_fraction"] = round(float((box[3] - box[1]) / height), 3)
     entry["third"] = _third((box[0] + box[2]) / 2, width)
-    visible, blockers = _visibility(p, tris, solid, name, occ_tris, occ_owner, occ_solid, width, height)
+    visible, blockers = _visibility(p, tris, solid, name, occ_tris, occ_owner, occ_solid, width, height, scene)
     entry["visible_fraction"] = visible
     if blockers:
         entry["occluded_by"] = blockers
@@ -199,7 +237,7 @@ def _see_object(p, name, object_shapes, width, height, fog_range, occ_tris, occ_
     return entry
 
 
-def _visibility(p, tris, solid, name, occ_tris, occ_owner, occ_solid, width, height):
+def _visibility(p, tris, solid, name, occ_tris, occ_owner, occ_solid, width, height, scene):
     """Fraction of sampled surface points with a clear line of sight, and what blocks the rest."""
     points = _samples(tris, p.eye, solid)
     uv, depth = project(p, points, width, height)
@@ -212,8 +250,21 @@ def _visibility(p, tris, solid, name, occ_tris, occ_owner, occ_solid, width, hei
         return 1.0, []
     vectors = points - p.eye
     distance = np.linalg.norm(vectors, axis=1)
+    # Use cached scene BVH when there are many occluder triangles to avoid rebuilds.
+    occ_tree = None
+    if len(occ_tris[others]) >= 2000 and hasattr(scene, 'bvh'):
+        occ_cache = scene.bvh(rendered=True, collidable=None, exclude=())
+        # occ_cache['triangles'] contains the filtered triangles; only use its tree if present
+        occ_tree = occ_cache.get('tree')
+        # but if the cache exists, make sure we pass the triangles and owners that align with the tree
+        if occ_tree is not None:
+            # replace occ_tris/occ_owner/occ_solid with cached filtered arrays
+            occ_tris = occ_cache['triangles']
+            occ_owner = occ_cache['owners']
+            occ_solid = occ_cache['solid']
     _, index = geometry.raycast(np.broadcast_to(p.eye, points.shape), vectors / distance[:, None],
-                                occ_tris[others], cull_back=occ_solid[others], max_t=distance - 1e-4)
+                                occ_tris[others], cull_back=occ_solid[others], max_t=distance - 1e-4,
+                                bvh=occ_tree)
     blocked = index >= 0
     counts = {}
     for n in occ_owner[others][index[blocked]]:

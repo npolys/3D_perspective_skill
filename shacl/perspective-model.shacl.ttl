@@ -1,1 +1,0 @@
-@prefix sh: <http://www.w3.org/ns/shacl#> .

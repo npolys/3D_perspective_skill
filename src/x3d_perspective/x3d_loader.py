@@ -1,12 +1,13 @@
 """Load an X3D XML scene into world-space records the analyzer reasons with.
 
 Positions are converted to meters with the file's length `unit` statement. Field defaults come
-from x3d_mcp's describe_node snapshot (contracts/x3d_defaults.json).
+from x3d_mcp's describe_node snapshot, shipped as package data (data/x3d_defaults.json).
 """
 
 import json
 from dataclasses import dataclass, field
 from functools import cache
+from importlib import resources
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -15,7 +16,8 @@ from lxml import etree
 
 from . import geometry, mathx
 
-DEFAULTS_PATH = Path(__file__).resolve().parents[2] / "contracts" / "x3d_defaults.json"
+# DTDs are not loaded, entities are not expanded and nothing is fetched: scene files may come from anywhere.
+XML_PARSER = dict(load_dtd=False, no_network=True, resolve_entities=False, remove_comments=True)
 
 # Nodes whose translation/rotation/scale/scaleOrientation/center fields set a local frame.
 TRANSFORMING = {"Transform", "CADPart", "HAnimHumanoid", "HAnimJoint", "HAnimSite", "EspduTransform"}
@@ -28,7 +30,13 @@ VIEWPOINTS = {"Viewpoint", "OrthoViewpoint"}
 
 @cache
 def _defaults():
-    return json.loads(DEFAULTS_PATH.read_text(encoding="utf-8"))["nodes"]
+    data = resources.files(__package__).joinpath("data", "x3d_defaults.json")
+    return json.loads(data.read_text(encoding="utf-8"))["nodes"]
+
+
+def parse_xml(path):
+    """Parse an X3D XML file safely (see XML_PARSER) and return its root element."""
+    return etree.parse(str(path), etree.XMLParser(**XML_PARSER)).getroot()
 
 
 def default(node_type, name):
@@ -104,13 +112,68 @@ class Scene:
     physics_gravity: list = field(default_factory=list)
     geospatial: bool = False
     notes: list = field(default_factory=list)
+    bound_viewpoint_name: str | None = None
+    _bvh_cache: dict = field(default_factory=dict, init=False, repr=False)
+
+    @property
+    def bound_viewpoint(self):
+        """The currently bound Viewpoint when runtime state is known; otherwise the file's first bound view."""
+        if self.bound_viewpoint_name is not None:
+            return self.viewpoint(self.bound_viewpoint_name)
+        return self.viewpoint()
+
+    @bound_viewpoint.setter
+    def bound_viewpoint(self, value):
+        if value is None:
+            self.bound_viewpoint_name = None
+            return
+        self.bind_viewpoint(value)
+
+    def bind_viewpoint(self, name=None):
+        """Set the runtime-bound Viewpoint while preserving file-order fallback when unset."""
+        if name is None:
+            self.bound_viewpoint_name = None
+            return self.viewpoint()
+        if not self.viewpoints:
+            raise KeyError("the scene has no Viewpoints")
+        by_name = self.viewpoint(name)
+        self.bound_viewpoint_name = by_name.name
+        return by_name
+
+    def bvh(self, rendered=None, collidable=None, exclude=()):
+        """Cached scene BVH for a filtered triangle set.
+
+        Returns a dict containing the filtered triangle array plus a built BVH when it helps.
+        """
+        key = (rendered, collidable, tuple(sorted(set(exclude))))
+        if key not in self._bvh_cache:
+            triangles, owners, solid = self.triangles(rendered=rendered, collidable=collidable, exclude=exclude)
+            # respect environment overrides for tuning
+            # Respect runtime config for BVH builder defaults if provided.
+            try:
+                from . import config as _config
+                bcfg = _config.get_bvh_config()
+                method = bcfg.get('method', geometry.BVH_DEFAULT_METHOD)
+                leaf = int(bcfg.get('leaf', geometry.BVH_DEFAULT_LEAF))
+            except Exception:
+                # fallback to environment / defaults
+                import os
+                method = os.environ.get('X3D_PERSPECTIVE_BVH_METHOD', geometry.BVH_DEFAULT_METHOD)
+                leaf = int(os.environ.get('X3D_PERSPECTIVE_BVH_LEAF', str(geometry.BVH_DEFAULT_LEAF)))
+            self._bvh_cache[key] = {
+                "triangles": triangles,
+                "owners": owners,
+                "solid": solid,
+                "tree": geometry._build_bvh(triangles, method=method, leaf_size=leaf) if len(triangles) >= 128 else None,
+            }
+        return self._bvh_cache[key]
 
     def viewpoint(self, name=None):
-        """A Viewpoint by DEF name or description; the initially bound one when name is None."""
+        """A Viewpoint by DEF name or description; the runtime-bound one when known, otherwise the file's first."""
         if not self.viewpoints:
             return None
         if name is None:
-            return self.viewpoints[0]
+            return self.bound_viewpoint if self.bound_viewpoint_name is not None else self.viewpoints[0]
         for vp in self.viewpoints:
             if name in (vp.name, vp.description):
                 return vp
@@ -119,7 +182,13 @@ class Scene:
     def bound_navigation_info(self, viewpoint=None):
         if viewpoint is not None and viewpoint.navigation_info is not None:
             return viewpoint.navigation_info
-        return self.navigation_infos[0] if self.navigation_infos else _navigation_info(None, "default")
+        if self.navigation_infos:
+            if self.bound_viewpoint_name is not None:
+                bound = self.viewpoint(self.bound_viewpoint_name)
+                if bound is not None and bound.navigation_info is not None:
+                    return bound.navigation_info
+            return self.navigation_infos[0]
+        return _navigation_info(None, "default")
 
     def objects(self):
         """Object name -> list of its shapes, in document order."""
@@ -210,7 +279,7 @@ def _geometry(element, node_type):
 class _Loader:
     def __init__(self, path):
         self.path = Path(path)
-        root = etree.parse(str(self.path), etree.XMLParser(load_dtd=False, no_network=True, remove_comments=True)).getroot()
+        root = parse_xml(self.path)
         unit, source = _unit(root)
         self.scene = Scene(path=self.path, unit=unit, unit_source=source)
         self.defs = {}
@@ -289,7 +358,8 @@ class _Loader:
         elif t in VIEWPOINTS and ctx["root"]:
             self._viewpoint(node, t, name, matrix)
         elif t == "NavigationInfo" and ctx["root"] and node.get("containerField", "children") == "children":
-            self.scene.navigation_infos.append(_navigation_info(node, name or f"NavigationInfo{len(self.scene.navigation_infos)}"))
+            label = name or f"NavigationInfo{len(self.scene.navigation_infos)}"
+            self.scene.navigation_infos.append(_navigation_info(node, label))
         elif t == "Background" and self.scene.background_sky is None:
             sky = mathx.floats(node.get("skyColor", "0 0 0"))
             self.scene.background_sky = tuple(sky[:3]) if len(sky) >= 3 else (0.0, 0.0, 0.0)
@@ -366,7 +436,7 @@ class _Loader:
             if depth > 8:
                 self.scene.notes.append(f"Inline {url}: nested too deeply; skipped")
                 return
-            inner = etree.parse(str(target), etree.XMLParser(load_dtd=False, no_network=True, remove_comments=True)).getroot()
+            inner = parse_xml(target)
             inner_unit, _ = _unit(inner)
             scale = mathx.uniform_scale(inner_unit / self.scene.unit)
             scene = next((c for c in inner.iter() if _tag(c) == "Scene"), None)

@@ -1,1 +1,0 @@
-Normative fields preserved through mapping contracts.

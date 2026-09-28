@@ -1,22 +1,39 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "perspective-agent"
-version = "7.0.0"
-description = "Grounded perspective-taking in X3D scenes: up, gravity, units, meter scale, visibility and collision"
+name = "x3d-perspective"
+dynamic = ["version"]
+description = "Take the user's perspective on an X3D scene: imagine, capture and see the rendered 2D view, and act on viewer-relative instructions"
 readme = "README.md"
 requires-python = ">=3.10"
+license = "LicenseRef-Web3D-Consortium-Open-Source-License"
+license-files = ["LICENSE"]
+authors = [{ name = "Nicholas Polys", email = "npolys@vt.edu" }]
+keywords = ["x3d", "web3d", "x_ite", "x3dom", "viewpoint", "perspective", "spatial reasoning", "agent skill"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Multimedia :: Graphics :: 3D Rendering",
+    "Topic :: Scientific/Engineering :: Visualization",
+]
 dependencies = [
     "numpy>=1.26",
     "lxml>=5.0",
-    "pydantic>=2.6",
-    "networkx>=3.2",
 ]
 
+[project.urls]
+Repository = "https://github.com/npolys/3D_perspective_skill"
+Documentation = "https://github.com/npolys/3D_perspective_skill/tree/main/docs"
+Changelog = "https://github.com/npolys/3D_perspective_skill/blob/main/CHANGELOG.md"
+
 [project.scripts]
-x3d-perspective = "perspective_agent.cli:main"
+x3d-perspective = "x3d_perspective.cli:main"
 
 [project.optional-dependencies]
 # Drive and capture the live view in X_ITE or X3DOM; then: python -m playwright install chromium
@@ -24,19 +41,35 @@ live = [
     "playwright>=1.40",
     "pillow>=10.0",
 ]
-# RDF export and SHACL validation of world-model records.
-rdf = [
-    "rdflib>=7.0",
-    "pyshacl>=0.26",
-]
 dev = [
     "pytest>=8.0",
     "rdflib>=7.0",
+    "ruff>=0.6",
+    "build>=1.2",
+    "twine>=5.0",
 ]
+
+[tool.setuptools.dynamic]
+version = { attr = "x3d_perspective.__version__" }
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+x3d_perspective = ["data/*.json", "py.typed"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 markers = ["live: drives X_ITE and X3DOM in a headless browser (needs the live extra and network); run with --live"]
+
+[tool.ruff]
+line-length = 130
+target-version = "py310"
+extend-exclude = ["upstream"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E731"]
+
+[tool.ruff.lint.isort]
+known-local-folder = ["conftest", "snapshot_defaults"]

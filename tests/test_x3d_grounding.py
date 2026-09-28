@@ -2,7 +2,7 @@
 
 X3D correctness itself (schema, DTD, ontology terms) is x3d_mcp's job. This repo checks its
 own groundings in ontology/x3d_grounding.ttl against x3d_mcp's describe_node output,
-snapshotted in contracts/x3d_defaults.json.
+snapshotted in src/x3d_perspective/data/x3d_defaults.json.
 """
 
 import json
@@ -16,7 +16,7 @@ from rdflib import RDF, RDFS, Literal, Namespace, URIRef  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 X3D = Namespace("https://www.web3d.org/specifications/X3dOntology4.1#")
 SC = Namespace("https://w3id.org/spatial-cognition#")
-SNAPSHOT = json.loads((ROOT / "contracts" / "x3d_defaults.json").read_text(encoding="utf-8"))["nodes"]
+SNAPSHOT = json.loads((ROOT / "src" / "x3d_perspective" / "data" / "x3d_defaults.json").read_text(encoding="utf-8"))["nodes"]
 
 # describe_node covers concrete nodes; abstract types are checked through a concrete node that inherits them.
 CONCRETE = {"X3DViewpointNode": "Viewpoint", "X3DBindableNode": "Viewpoint"}

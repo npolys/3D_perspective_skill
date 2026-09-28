@@ -1,10 +1,13 @@
 """Frame: up, gravity, units, meter scale and the viewer's body (docs/X3D_MAPPINGS.md §1, §4, §6)."""
 
+import math
+
 import numpy as np
 import pytest
 
+from x3d_perspective import frames, perspective, view, x3d_loader
+
 from conftest import ROOM, write_scene
-from perspective_agent import frames, perspective, x3d_loader
 
 FLOOR = '<Transform DEF="Floor" translation="0 -0.05 0"><Shape><Box size="10 0.1 10"/></Shape></Transform>'
 
@@ -23,7 +26,8 @@ def test_room_frame():
 
 def test_viewpoint_under_scale_shrinks_the_body_and_near_plane(tmp_path):
     scene = x3d_loader.load(write_scene(tmp_path, '<NavigationInfo type=\'"WALK" "ANY"\'/>'
-                                        '<Transform DEF="Miniature" scale="0.1 0.1 0.1"><Viewpoint DEF="Mouse" position="0 16 30"/></Transform>'
+                                        '<Transform DEF="Miniature" scale="0.1 0.1 0.1">'
+                                        '<Viewpoint DEF="Mouse" position="0 16 30"/></Transform>'
                                         + FLOOR))
     p = perspective.from_viewpoint(scene, "Mouse")
     assert (p.collision_radius, p.eye_height, p.step_height) == pytest.approx((0.025, 0.16, 0.075))
@@ -47,7 +51,8 @@ def test_centimeter_unit_statement_gives_meters(tmp_path):
 
 def test_z_up_content_rotated_to_y_up_is_reported(tmp_path):
     scene = x3d_loader.load(write_scene(tmp_path, '<Viewpoint position="0 1.6 5"/>'
-                                        '<Transform DEF="ZupToYup" rotation="1 0 0 -1.5708"><Shape><Box size="6 6 0.1"/></Shape></Transform>'))
+                                        '<Transform DEF="ZupToYup" rotation="1 0 0 -1.5708">'
+                                        '<Shape><Box size="6 6 0.1"/></Shape></Transform>'))
     report = frames.frame(scene)
     assert any("Z-up" in e for e in report["up_evidence"])
     assert report["extent_m"]["size"][1] == pytest.approx(0.1, abs=1e-3)     # the slab is now a floor
@@ -69,3 +74,12 @@ def test_right_handed_y_up_default_axes(tmp_path):
     p = perspective.from_viewpoint(x3d_loader.load(write_scene(tmp_path, "<Shape><Box/></Shape>")))
     assert np.cross(p.right, p.camera_up) == pytest.approx(-p.forward)   # right x up = toward the viewer (+Z)
     assert p.right == pytest.approx([1, 0, 0])
+
+
+def test_rectangular_fov_follows_aspect_ratio_spec(tmp_path):
+    scene = x3d_loader.load(write_scene(tmp_path, "<Shape><Box/></Shape>"))
+    p = perspective.from_viewpoint(scene)
+    p.field_of_view = 0.7853981633974483
+    for width, height in ((1280, 720), (720, 1280)):
+        h_fov, v_fov = view.rect_fov(p, width, height)
+        assert width / height == pytest.approx(math.tan(h_fov / 2) / math.tan(v_fov / 2), rel=1e-9, abs=1e-9)

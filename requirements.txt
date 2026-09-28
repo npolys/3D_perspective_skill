@@ -1,3 +1,0 @@
-rdflib
-pyshacl
-pydantic

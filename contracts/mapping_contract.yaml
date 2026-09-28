@@ -1,5 +1,0 @@
-version: 6.0
-normative:
-  NavigationInfo.type: NavigationMode
-derived:
-  NearPerceptionLimit: collisionDistance/2

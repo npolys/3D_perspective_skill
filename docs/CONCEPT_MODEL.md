@@ -1,1 +1,0 @@
-Agent, Perspective, NavigationMode, ObservationRegion, OccupancyConstraint.

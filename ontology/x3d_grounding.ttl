@@ -7,7 +7,7 @@
 
 <https://w3id.org/spatial-cognition/x3d-grounding> a owl:Ontology ;
     rdfs:label "X3D grounding for the spatial cognition ontology"@en ;
-    rdfs:comment "Links each agent concept to the X3D Ontology 4.1 nodes and fields it is computed from. Groundings are annotations, not logical axioms: the agent's concepts are not X3D node types, and annotations keep this ontology independent of the X3D Ontology's own modelling. tests/test_x3d_grounding.py checks every link against x3d_mcp's describe_node definitions (contracts/x3d_defaults.json); X3D schema and ontology conformance is x3d_mcp's job."@en ;
+    rdfs:comment "Links each agent concept to the X3D Ontology 4.1 nodes and fields it is computed from. Groundings are annotations, not logical axioms: the agent's concepts are not X3D node types, and annotations keep this ontology independent of the X3D Ontology's own modelling. tests/test_x3d_grounding.py checks every link against x3d_mcp's describe_node definitions (src/x3d_perspective/data/x3d_defaults.json); X3D schema and ontology conformance is x3d_mcp's job."@en ;
     rdfs:seeAlso <https://www.web3d.org/specifications/X3dOntology4.1> .
 
 #################################################################

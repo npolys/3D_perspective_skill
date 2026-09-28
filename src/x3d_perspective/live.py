@@ -20,16 +20,21 @@ import numpy as np
 from lxml import etree
 
 from . import mathx
-from .x3d_loader import _tag, _defaults
+from .x3d_loader import _defaults, _tag, parse_xml
 
 RENDERERS = ("x_ite", "x3dom")
+# Pinned so captures are repeatable; the versions the live tests were verified with.
+X_ITE_VERSION = "16.4.1"
+X3DOM_VERSION = "1.8.3"
 X_ITE_SCRIPT = "https://cdn.jsdelivr.net/npm/x_ite@{version}/dist/x_ite.min.js"
 X3DOM_BASE = "https://www.x3dom.org/download/{version}/"
 PAGE = "__perspective_live__.html"
 # Software GL, so captures work without a GPU. Same flags as x3d_mcp's renderer and the x3dom-spikes;
 # X3DOM also needs Chrome's full headless mode (channel "chromium"), not the headless shell.
-LAUNCH_ARGS = ["--use-gl=angle", "--use-angle=swiftshader", "--enable-unsafe-swiftshader",
-               "--ignore-gpu-blocklist", "--no-sandbox", "--hide-scrollbars"]
+# Default launch args intentionally do NOT include '--no-sandbox'. This option may be supplied
+# when running in an environment that requires it (for example some CI systems). See README for security notes.
+LAUNCH_ARGS_BASE = ["--use-gl=angle", "--use-angle=swiftshader", "--enable-unsafe-swiftshader",
+                    "--ignore-gpu-blocklist", "--hide-scrollbars"]
 SETTLE_MS = 1500            # after load or a field change: a few frames, and WALK settling
 BIND_MS = 2500              # after a bind: the default 1 s transition, then settling
 VECTOR_TYPES = {"SFVec2f", "SFVec3f", "SFVec3d", "SFColor", "SFColorRGBA", "SFRotation", "SFVec4f"}
@@ -45,7 +50,7 @@ def _x_ite_page(scene_name, width, height, version):
 
 def _x3dom_page(scene_path, width, height, version):
     """Embed the scene's children in an X3DOM page (the approach of x3d_mcp's x3dom_page)."""
-    root = etree.parse(str(scene_path), etree.XMLParser(load_dtd=False, no_network=True, remove_comments=True)).getroot()
+    root = parse_xml(scene_path)
     scene = next(c for c in root.iter() if _tag(c) == "Scene")
     body = "".join(etree.tostring(c, method="html", encoding="unicode") for c in scene if isinstance(c.tag, str))
     base = X3DOM_BASE.format(version=version)
@@ -74,7 +79,15 @@ class _Handler(http.server.SimpleHTTPRequestHandler):
 
 
 class LiveView:
-    def __init__(self, scene_path, renderer="x_ite", size=(1280, 720), x_ite_version="latest", x3dom_version="1.8.3"):
+    def __init__(self, scene_path, renderer="x_ite", size=(1280, 720), x_ite_version=X_ITE_VERSION,
+                 x3dom_version=X3DOM_VERSION, allow_no_sandbox=False, launch_args=None):
+        """LiveView(scene_path, renderer, size, allow_no_sandbox=False, launch_args=None)
+
+        allow_no_sandbox: when True, append '--no-sandbox' to the Chromium launch args. Defaults to False
+        to avoid running Chromium without its sandbox. For environments that require it (some CI), set True.
+
+        launch_args: optional list overriding the default launch arguments entirely.
+        """
         if renderer not in RENDERERS:
             raise ValueError(f"renderer must be one of {RENDERERS}")
         self.scene_path = Path(scene_path).resolve()
@@ -82,8 +95,15 @@ class LiveView:
         self.size = size
         self.versions = {"x_ite": x_ite_version, "x3dom": x3dom_version}
         self.errors = []
-        root = etree.parse(str(self.scene_path), etree.XMLParser(load_dtd=False, no_network=True)).getroot()
+        root = parse_xml(self.scene_path)
         self._types = {e.get("DEF"): _tag(e) for e in root.iter() if isinstance(e.tag, str) and e.get("DEF")}
+        # Determine launch args: explicit override, otherwise use base plus optional --no-sandbox.
+        if launch_args is not None:
+            self.launch_args = list(launch_args)
+        else:
+            self.launch_args = list(LAUNCH_ARGS_BASE)
+            if allow_no_sandbox:
+                self.launch_args.append("--no-sandbox")
 
     def __enter__(self):
         return self.open()
@@ -101,7 +121,8 @@ class LiveView:
         self._httpd = http.server.ThreadingHTTPServer(("127.0.0.1", 0), handler)
         threading.Thread(target=self._httpd.serve_forever, daemon=True).start()
         self._playwright = sync_playwright().start()
-        self._browser = self._playwright.chromium.launch(channel="chromium", args=LAUNCH_ARGS)
+        # Use the configured launch args (defaults avoid --no-sandbox).
+        self._browser = self._playwright.chromium.launch(channel="chromium", args=self.launch_args)
         self.page = self._browser.new_page(viewport={"width": width, "height": height})
         self.page.on("pageerror", lambda e: self.errors.append(str(e)))
         self.page.goto(f"http://127.0.0.1:{self._httpd.server_address[1]}/{PAGE}", wait_until="load")
@@ -146,7 +167,8 @@ class LiveView:
         else:
             node_type = self._types.get(def_name)
             field_type = _defaults().get(node_type, {}).get("fields", {}).get(field, {}).get("type", "SFString")
-            numbers = mathx.floats(value) if field_type in VECTOR_TYPES or field_type in ("SFFloat", "SFDouble", "SFInt32") else []
+            numeric = field_type in VECTOR_TYPES or field_type in ("SFFloat", "SFDouble", "SFInt32")
+            numbers = mathx.floats(value) if numeric else []
             self.page.evaluate("""([d, f, t, v, nums]) => {
                 const node = document.querySelector("x3d-canvas").browser.currentScene.getNamedNode(d);
                 if (X3D[t] && nums.length > 1) node[f] = new X3D[t](...nums);
@@ -163,7 +185,8 @@ class LiveView:
             m = np.array(m)
             rotation, position = m[:, :3], m[:, 3]
         else:
-            values = self.page.evaluate("""() => { const p = window.__viewer.position_changed, o = window.__viewer.orientation_changed;
+            values = self.page.evaluate("""() => {
+                const p = window.__viewer.position_changed, o = window.__viewer.orientation_changed;
                 return [p.x, p.y, p.z, o.x, o.y, o.z, o.angle]; }""")
             position, rotation = np.array(values[:3]), mathx.rotation(values[3:])
         rotation = mathx.frame_rotation(np.vstack([np.hstack([rotation, [[0], [0], [0]]]), [0, 0, 0, 1]]))
@@ -176,8 +199,120 @@ class LiveView:
         return self.page.evaluate("""pts => { const r = document.getElementById("x3d").runtime;
             return pts.map(p => r.calcCanvasPos(p[0], p[1], p[2])); }""", [list(map(float, p)) for p in points])
 
-    def capture(self, path=None):
+    def capture(self, path=None, include_id_map=False):
+        """Capture the visible canvas. If include_id_map is True, also produce an
+        object-id encoded capture where each DEF'd node is temporarily recolored to a
+        unique flat RGB so imaging can deterministically locate objects.
+
+        Returns:
+            If include_id_map is False: PNG bytes (same as before).
+            If include_id_map is True: dict {"png": <bytes>, "id_png": <bytes>, "id_colors": {name: [r,g,b]}}
+        """
+        # Regular color capture
         png = self.page.locator("canvas").first.screenshot()
+        if not include_id_map:
+            if path:
+                Path(path).write_bytes(png)
+            return png
+
+        # Build an id-color mapping for each DEF'd node available in the scene
+        names = self.page.evaluate("() => Array.from(document.querySelectorAll('[DEF]')).map(n => n.getAttribute('DEF'))")
+        # deterministic mapping: use a simple hashed palette in 24-bit RGB (avoid black and near-black)
+        def _name_to_rgb(name):
+            h = 2166136261
+            for ch in name:
+                h = (h ^ ord(ch)) * 16777619 & 0xFFFFFFFF
+            # produce saturated color away from black/white
+            r = (h >> 16) & 0xFF
+            g = (h >> 8) & 0xFF
+            b = h & 0xFF
+            # nudge away from extremes
+            r = (r + 64) % 256
+            g = (g + 128) % 256
+            b = (b + 192) % 256
+            # avoid very dark colors (reserve near-black for background)
+            if r < 16 and g < 16 and b < 16:
+                r = (r + 32) % 256
+            return [r, g, b]
+
+        id_colors = {n: _name_to_rgb(n) for n in names}
+
+        # Evaluate a page script to temporarily recolor DEF'd nodes to their id color.
+        # This is best-effort: record prior values and restore them afterwards.
+        recolor_script = """
+        (map) => {
+            function setColorOnNode(node, rgb) {
+                // try X3DOM style: find Appearance/Material children
+                try {
+                    const mats = node.getElementsByTagName('Material');
+                    if (mats && mats.length) {
+                        Array.from(mats).forEach(m => { m.setAttribute('diffuseColor', rgb); m.setAttribute('emissiveColor', rgb); });
+                        return true;
+                    }
+                } catch (e) {}
+                // try x_ite: set browser node material if present
+                try {
+                    if (node.setAttribute) { node.setAttribute('diffuseColor', rgb); return true; }
+                } catch (e) {}
+                return false;
+            }
+            const names = Object.keys(map);
+            const saved = [];
+            for (const n of names) {
+                const node = document.querySelector("[DEF='" + n + "']");
+                if (!node) continue;
+                // save existing material attributes where possible
+                const mats = node.getElementsByTagName ? node.getElementsByTagName('Material') : [];
+                const prev = [];
+                for (const m of mats) prev.push(m.getAttribute('diffuseColor'));
+                saved.push({name: n, node: node, mats: mats, prev: prev});
+                const rgb = map[n].join(' ');
+                setColorOnNode(node, rgb);
+            }
+            // small pause to let the renderer update
+            return saved;
+        }
+        """
+        saved = self.page.evaluate(recolor_script, id_colors)
+        # allow a couple frames for the recolor to become visible
+        self.page.wait_for_timeout(80)
+        id_png = self.page.locator("canvas").first.screenshot()
+
+        # restore previous material attributes
+        restore_script = """
+        (saved) => {
+            for (const s of saved) {
+                try {
+                    if (!s || !s.node) continue;
+                    if (s.mats && s.mats.length) {
+                        for (let i = 0; i < s.mats.length; ++i) {
+                            const m = s.mats[i];
+                            const prev = s.prev[i];
+                            if (prev === null || prev === undefined) m.removeAttribute('diffuseColor');
+                            else m.setAttribute('diffuseColor', prev);
+                        }
+                    }
+                    // fallback: remove any temporary attributes
+                    if (s.node && s.node.removeAttribute) {
+                        try { s.node.removeAttribute('diffuseColor'); } catch (e) {}
+                        try { s.node.removeAttribute('emissiveColor'); } catch (e) {}
+                    }
+                } catch (e) {}
+            }
+            return true;
+        }
+        """
+        try:
+            self.page.evaluate(restore_script, saved)
+        except Exception:
+            # best-effort restore; ignore failures but record the error
+            self.errors.append('Failed to restore recolor state')
+
+        # write files if requested (write both color and id map)
         if path:
-            Path(path).write_bytes(png)
-        return png
+            p = Path(path)
+            p.write_bytes(png)
+            idpath = p.with_name(p.stem + "_idmap" + p.suffix)
+            idpath.write_bytes(id_png)
+
+        return {"png": png, "id_png": id_png, "id_colors": id_colors}

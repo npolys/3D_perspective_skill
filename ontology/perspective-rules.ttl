@@ -1,2 +1,0 @@
-@prefix pm: <https://x3d-agent-suite.org/perspective#> .
-pm:HumanPerspective pm:defaultScale pm:HumanScale .

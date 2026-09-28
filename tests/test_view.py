@@ -5,10 +5,12 @@ Expected pixels were checked against X_ITE and X3DOM captures at 1280x720 (tests
 
 import json
 
+import numpy as np
 import pytest
 
+from x3d_perspective import cli, geometry, perspective, verify, view, x3d_loader
+
 from conftest import ROOM, write_scene
-from perspective_agent import cli, perspective, view, x3d_loader
 
 
 @pytest.fixture(scope="module")
@@ -62,7 +64,8 @@ def test_walk_eye_depends_on_the_renderer(room):
 
 
 def test_viewer_with_no_support_falls(tmp_path):
-    scene = x3d_loader.load(write_scene(tmp_path, '<NavigationInfo type=\'"WALK" "ANY"\'/><Viewpoint DEF="Edge" position="0 1.6 4"/>'
+    scene = x3d_loader.load(write_scene(tmp_path, '<NavigationInfo type=\'"WALK" "ANY"\'/>'
+                                        '<Viewpoint DEF="Edge" position="0 1.6 4"/>'
                                         '<Transform translation="0 -0.05 0"><Shape><Box size="6 0.1 6"/></Shape></Transform>'))
     falling = view.see(scene, perspective.from_viewpoint(scene, "Edge", "x_ite"))
     assert falling["background_only"] and falling["reason"].startswith("VIEWER_FALLS")
@@ -79,6 +82,24 @@ def test_hidden_and_behind(tmp_path):
     assert seen["Hidden"]["status"] == "NOT_RENDERED"
     assert seen["Behind"]["status"] == "OUT_OF_FRUSTUM" and seen["Behind"]["where"] == "behind the viewer"
     assert seen["Right"]["status"] == "OUT_OF_FRUSTUM" and seen["Right"]["where"] == "right of the frame"
+
+
+def test_projection_boxes_are_used_when_available(room):
+    imagined = view.see(room, perspective.from_viewpoint(room, "Entry"))
+    seen = verify.projected_boxes(imagined, png=None)
+    assert "Table" in seen and "Lamp" in seen
+    assert seen["Table"]["box"] == pytest.approx(imagined["objects"][2]["pixel_box"], abs=0.1)
+
+
+def test_raycast_bvh_matches_bruteforce_on_large_scene():
+    rng = np.random.default_rng(0)
+    triangles = rng.normal(size=(500, 3, 3))
+    origins = np.zeros((64, 3))
+    directions = np.tile(np.array([0.0, 0.0, 1.0]), (64, 1))
+    t_bruteforce, i_bruteforce = geometry.raycast(origins, directions, triangles, chunk=64)
+    t_bvh, i_bvh = geometry.raycast(origins, directions, triangles, chunk=64)
+    assert np.allclose(t_bruteforce, t_bvh)
+    assert np.array_equal(i_bruteforce, i_bvh)
 
 
 def test_cli_see(capsys):

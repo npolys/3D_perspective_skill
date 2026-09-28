@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "x3d-perspective: taking the user's perspective on X3D scenes"
+abstract: >-
+  An Agent Skill and Python package that predicts the 2D view an X3D browser renders from a
+  Viewpoint, captures and compares it in X_ITE and X3DOM, and resolves viewer-relative
+  instructions into X3D field changes, following the X3D 4.1 specification.
+type: software
+authors:
+  - family-names: Polys
+    given-names: Nicholas
+version: 7.0.0
+date-released: 2026-09-28
+repository-code: "https://github.com/npolys/3D_perspective_skill"
+license-url: "https://github.com/npolys/3D_perspective_skill/blob/main/LICENSE"
+keywords:
+  - X3D
+  - Web3D
+  - X_ITE
+  - X3DOM
+  - viewpoint
+  - spatial reasoning
+  - agent skill

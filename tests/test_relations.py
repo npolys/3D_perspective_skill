@@ -2,8 +2,9 @@
 
 import pytest
 
+from x3d_perspective import perspective, relations, x3d_loader
+
 from conftest import ROOM, write_scene
-from perspective_agent import perspective, relations, x3d_loader
 
 # "Put that box to the right of the sphere", from each viewpoint of the room.
 RIGHT_OF_LAMP = {
@@ -40,7 +41,7 @@ def test_put_that_box_to_the_right_of_the_sphere(room, viewpoint):
 
 
 def test_setting_the_suggested_translation_gives_the_imagined_view(room):
-    from perspective_agent import view
+    from x3d_perspective import view
     p = perspective.from_viewpoint(room, "Side")
     plan = relations.place(room, p, "Table", "right of", "Lamp")
     moved = relations.with_translation(room, "Table", plan["set_field"]["value"])
@@ -60,8 +61,10 @@ def test_resolve_skips_floors_and_walls_and_asks_when_ambiguous(tmp_path):
     room = x3d_loader.load(ROOM)
     assert relations.resolve(room, None, "Floor")["match"] == "Floor"
     two = x3d_loader.load(write_scene(tmp_path, '<Viewpoint position="0 1 8"/>'
-                                      '<Transform DEF="A" translation="-1 0 0"><Shape><Box size="0.5 0.5 0.5"/></Shape></Transform>'
-                                      '<Transform DEF="B" translation="1 0 0"><Shape><Box size="0.5 0.5 0.5"/></Shape></Transform>'))
+                                      '<Transform DEF="A" translation="-1 0 0">'
+                                      '<Shape><Box size="0.5 0.5 0.5"/></Shape></Transform>'
+                                      '<Transform DEF="B" translation="1 0 0">'
+                                      '<Shape><Box size="0.5 0.5 0.5"/></Shape></Transform>'))
     answer = relations.resolve(two, perspective.from_viewpoint(two), "that box")
     assert answer["match"] is None and set(answer["candidates"]) == {"A", "B"}
 

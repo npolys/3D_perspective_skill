@@ -9,7 +9,7 @@ The perspective is the 2D view the X3D browser renders from the bound Viewpoint.
 
 ## Commands
 
-Run these from this folder's `.venv`. Each prints JSON, and each takes `--viewpoint DEF` and `--renderer x_ite|x3dom`. Pass the renderer the user is viewing in, because the two differ under WALK (below).
+Install once with `pip install -e .[live]` in this folder, then `python -m playwright install chromium`. Each command prints JSON, and each takes `--viewpoint DEF` and `--renderer x_ite|x3dom`. Pass the renderer the user is viewing in, because the two differ under WALK (below). `docs/CLI.md` documents every field.
 
 | Command | What it gives |
 |---|---|
@@ -19,6 +19,7 @@ Run these from this folder's `.venv`. Each prints JSON, and each takes `--viewpo
 | `x3d-perspective relate SCENE FIGURE GROUND` | which relations hold from this view: right of, in front of, above, and their opposites |
 | `x3d-perspective place SCENE FIGURE "right of" GROUND` | the field change that makes it true (`set_field`), and the imagined view after the change |
 | `x3d-perspective capture SCENE --renderer … --out view.png [--set DEF.field=VALUE]` | a capture from the live renderer, the live camera, and seen versus imagined boxes. Look at the PNG as well |
+| `x3d-perspective verify SCENE [--out-dir DIR]` | every Viewpoint in both renderers, compared with the imagined view; exit status 1 on any disagreement |
 
 ## Rules that set the view
 
@@ -101,4 +102,4 @@ These are x3d_mcp's job, not this skill's:
 - rendering;
 - document edits (`modify_x3d_node`, `move_x3d_node`).
 
-The hosted server accepts documents only as `content` and has no `render_image` yet. `contracts/x3d_defaults.json` is a snapshot of its `describe_node` output.
+The hosted server accepts documents only as `content` and has no `render_image` yet. `src/x3d_perspective/data/x3d_defaults.json` is a snapshot of its `describe_node` output.

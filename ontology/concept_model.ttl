@@ -1,6 +1,0 @@
-@prefix : <http://x3d.world/concept#> .
-:Perspective a :Concept .
-:NavigationMode a :Concept .
-:ObservationRegion a :Concept .
-:OccupancyConstraint a :Concept .
-:PerceptualAngle a :Concept .
