@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^pytest tests/test_schema\\.py -q$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

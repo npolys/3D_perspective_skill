@@ -20,10 +20,12 @@ __version__ = "7.0.1"
 from .frames import frame
 from .perspective import Perspective, from_viewpoint
 from .relations import place, relations_between, resolve
+from .schema import PerspectiveModel, build_perspective_model, validate_perspective_model
 from .view import DEFAULT_SIZE, see
 from .x3d_loader import Scene, load
 
 __all__ = [
-    "DEFAULT_SIZE", "Perspective", "Scene", "__version__", "frame", "from_viewpoint", "load", "place",
-    "relations_between", "resolve", "see",
+    "DEFAULT_SIZE", "Perspective", "PerspectiveModel", "Scene", "__version__", "build_perspective_model",
+    "frame", "from_viewpoint", "load", "place", "relations_between", "resolve", "see",
+    "validate_perspective_model",
 ]
